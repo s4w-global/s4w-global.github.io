@@ -1,102 +1,91 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Safe 4 Women – S4W Global</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="/assets/css/style.css">
 
 <!-- Manifest -->
 <link rel="manifest" href="/manifest.json">
 
-<!-- Favicon Set -->
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon-192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon-180.png">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/assets/img/favicon-32.png">
 
+<!-- OpenGraph -->
+<meta property="og:title" content="Safe 4 Women – S4W Global">
+<meta property="og:description" content="Wij bouwen aan een internationaal veiligheidsplatform voor vrouwen. Blijf op de hoogte van de lancering.">
+<meta property="og:image" content="/assets/img/og-banner.png">
+<meta property="og:type" content="website">
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Safe 4 Women – S4W Global">
+<meta name="twitter:description" content="Wij bouwen aan een internationaal veiligheidsplatform voor vrouwen. Blijf op de hoogte.">
+<meta name="twitter:image" content="/assets/img/og-banner.png">
 
-    <title>S4W Global — Safe 4 Women</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" />
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="../assets/css/style.css" />
-
-    <!-- OpenGraph -->
-    <meta property="og:title" content="Safe 4 Women — S4W Global" />
-    <meta property="og:description" content="Een nieuw veiligheids-initiatief voor vrouwen: bewustwording, meldingen en community-ondersteuning." />
-    <meta property="og:image" content="../assets/img/og-banner.png" />
-    <meta property="og:url" content="https://s4w-global.com/nl/" />
-    <meta property="og:type" content="website" />
-
-    <meta name="twitter:card" content="summary_large_image" />
 </head>
 
-<body>
-    <header>
-        <nav class="lang-switch">
-            <a href="../en/">English</a>
-            <span>•</span>
-            <a href="../nl/">Nederlands</a>
-        </nav>
-    </header>
+<body class="dark">
 
-    <main class="container">
+<!-- HEADER -->
+<div class="header-accent">
+    <div class="header-inner">
+        <div class="logo-placeholder"></div>
 
-        <h1>Safe 4 Women</h1>
-        <p class="subtitle">
-            Een onafhankelijk initiatief gericht op bewustwording, veiligheid
-            en snelle ondersteuning voor vrouwen.
-        </p>
+        <div class="lang-switch">
+            <a href="/en/">EN</a>
+            <a href="/nl/" style="text-decoration:underline;">NL</a>
+        </div>
+    </div>
+</div>
 
-        <section class="coming-soon">
-            <h2>Binnenkort Beschikbaar</h2>
-            <p>
-                Wij bouwen een digitale omgeving waar vrouwen eenvoudig toegang hebben
-                tot veiligheidsopties, meldingen, informatie en gemeenschapssteun.
-            </p>
-        </section>
+<!-- MAIN CONTENT -->
+<main class="content-box">
 
-        <!-- Opt-in Form -->
-        <section class="optin">
-            <h3>Blijf op de hoogte</h3>
-            <p>Meld je aan zodat we je kunnen informeren bij de lancering.</p>
+    <h1 class="title">SAFE 4 WOMEN</h1>
+    <p class="subtitle">Een internationale veiligheidsoplossing voor vrouwen, gebouwd met privacy en veiligheid als kern.</p>
 
-            <form action="https://formsubmit.co/info@s4w-global.com" method="POST">
-                <input type="hidden" name="_next" value="https://s4w-global.com/thanks/" />
-                <input type="hidden" name="_template" value="box" />
-                <input type="hidden" name="_subject" value="Nieuwe S4W Opt-In" />
-                <input type="text" name="_honey" style="display:none">
+    <section class="coming-box">
+        <h2>Lancering binnenkort</h2>
+        <p>We werken hard aan het platform. Houd ons in de gaten en meld je aan voor updates.</p>
+    </section>
 
-                <input type="email" name="email"
-                       placeholder="E-mailadres"
-                       required />
-                <button type="submit">Verstuur</button>
-            </form>
-        </section>
+    <section class="optin">
+        <h3>Meld je aan voor updates</h3>
 
-        <section class="info-section">
-            <div>
-                <h3>Juridische Basis</h3>
-                <p>
-                    S4W Global opereert in de vroegste pre-lanceringsfase (Fase 0).
-                    Alle gegevens worden verwerkt volgens strikte Europese privacywetgeving.
-                </p>
-            </div>
+        <form method="POST" action="https://formsubmit.co/info@s4w-global.com">
+            <input type="email" name="email" required class="email-input" placeholder="Jouw e-mailadres">
 
-            <div>
-                <h3>Transparantie</h3>
-                <p>
-                    Alle ontwikkelingslogboeken, documentatie en besluiten worden
-                    veilig vastgelegd en versleuteld opgeslagen.
-                </p>
-            </div>
-        </section>
+            <!-- Redirect -->
+            <input type="hidden" name="_next" value="https://s4w-global.com/nl/thanks/">
 
-    </main>
+            <button class="btn-accent">Aanmelden</button>
+        </form>
+    </section>
 
-    <footer>
-        © 2025 Safe 4 Women — S4W Global  
-    </footer>
+    <div class="info-grid">
+
+        <div class="info-card">
+            <h3>Juridische Basis</h3>
+            <p>Wij werken volgens Europese privacywetgeving (GDPR/AVG) met minimaal datagebruik.</p>
+        </div>
+
+        <div class="info-card">
+            <h3>Transparantie</h3>
+            <p>Wij communiceren helder, eerlijk en volledig over wat we bouwen en waarom.</p>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    © 2025 Safe 4 Women — S4W Global
+</footer>
+
 </body>
 </html>
