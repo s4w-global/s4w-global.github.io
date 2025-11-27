@@ -1,17 +1,12 @@
-/*
- * S4W Global — Language Helper
- * Handles manual NL/EN toggle and prevents reload loops.
- */
+(function() {
+    const lang = navigator.language || navigator.userLanguage;
+    const code = lang.substring(0,2).toLowerCase();
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const links = document.querySelectorAll(".lang-switch a");
-
-    links.forEach(link => {
-        link.addEventListener("click", function (e) {
-            // Allow normal navigation, but prevent flickering
-            document.body.classList.add("fade-out");
-        });
-    });
-
-});
+    if (window.location.pathname === "/") {
+        if (code === "nl") {
+            window.location.href = "/nl/";
+        } else {
+            window.location.href = "/en/";
+        }
+    }
+})();
