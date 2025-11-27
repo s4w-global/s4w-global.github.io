@@ -3,117 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S4W – Safe For Women</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Safe 4 Women – Official Foundation Page</title>
+
+    <!-- Social OpenGraph -->
+    <meta property="og:title" content="Safe 4 Women – Protecting Women Worldwide">
+    <meta property="og:description" content="S4W is a global initiative focused on early warning, safety awareness and empowerment for women.">
+    <meta property="og:image" content="https://s4w-global.com/logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
-    <meta name="description" content="S4W – Safe For Women: een internationaal initiatief gericht op veiligheid, bewustwording en snelle hulp bij bedreigende situaties.">
+
+    <!-- Basic Security Headers (informational only — must be set server-side) -->
+    <!--
+        Content-Security-Policy: default-src 'self'; img-src 'self' data:;
+        X-Frame-Options: DENY
+        X-Content-Type-Options: nosniff
+        Referrer-Policy: no-referrer-when-downgrade
+        Strict-Transport-Security: max-age=63072000; includeSubDomains;
+    -->
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0d1a2b; /* donkerblauw zoals logo */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        img.logo {
+            width: 180px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #ff4fa3; /* roze accent */
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ddd;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+        }
+
+        p {
+            color: #eee;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .coming-soon {
+            background: #112035;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+            border: 1px solid #26445f;
+        }
+
+        .language-toggle {
+            cursor: pointer;
+            background: #ff4fa3;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <h1>S4W – Safe For Women</h1>
-            <p class="subtitle">Een internationaal initiatief voor veiligheid, bewustwording en empowerment.</p>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <h2>Veiligheid begint met zichtbaarheid</h2>
-            <p>
-                S4W is een onafhankelijk, non-profit initiatief dat zich richt op het vergroten van veiligheid voor vrouwen.
-                Wij bouwen aan een platform dat helpt bij het melden, herkennen en voorkomen van onveilige situaties – lokaal, nationaal en internationaal.
-            </p>
-        </div>
-    </section>
+<div class="container">
 
-    <section class="mission">
-        <div class="container">
-            <h2>Missie</h2>
-            <p>
-                Onze missie is het creëren van een laagdrempelig en wereldwijd toegankelijk meld- en informatiesysteem,
-                waarmee vrouwen sneller geholpen kunnen worden, en waarmee steden, gemeenten en autoriteiten beter inzicht
-                krijgen in (potentiële) risicozones.
-            </p>
-        </div>
-    </section>
+    <div class="language-toggle" onclick="toggleLanguage()">
+        English / Nederlands
+    </div>
 
-    <section class="legal">
-        <div class="container">
-            <h2>Juridische basis</h2>
-            <p>
-                S4W bevindt zich momenteel in de voorbereidingsfase (<strong>stichting in oprichting</strong>).
-                Domeinnamen, documentatie en technische basis worden tijdens deze fase veilig vastgelegd om misbruik of kopieergedrag te voorkomen.
-            </p>
-            <p>
-                Dit project wordt ontwikkeld als non-profit maatschappelijke oplossing.  
-                Er is géén commercieel belang, geen tracking en geen advertentie-model.
-            </p>
-            <p>
-                Alle gegevens, ontwerpen, technische implementaties en tijdstempels worden vastgelegd via:
-            </p>
-            <ul>
-                <li>GitHub repository (private) — volledige versiegeschiedenis</li>
-                <li>Onherroepelijke commit-logs als bewijs van auteurschap</li>
-                <li>Domeinregistratie op naam van de oprichter</li>
-                <li>DNS-configuratie + SSL-certificaten</li>
-                <li>Archiefbestanden (PDF’s) met timestamp</li>
-            </ul>
-        </div>
-    </section>
+    <!-- LOGO -->
+    <img src="logo.png" alt="Safe 4 Women Logo" class="logo">
 
-    <section class="transparency">
-        <div class="container">
-            <h2>Transparantie</h2>
-            <p>
-                Wij geloven dat veiligheid alleen kan bestaan wanneer het platform zelf transparant is.
-                Daarom publiceren wij:
-            </p>
-            <ul>
-                <li>Architectuurprincipes en technische structuur</li>
-                <li>Privacy-principes en data-minimisatie</li>
-                <li>Een openbaar en begrijpelijk veiligheids- en meldprotocol</li>
-                <li>Doelen, beperkingen en risico’s</li>
-            </ul>
-        </div>
-    </section>
+    <!-- TITEL -->
+    <h1 data-nl="SAFE 4 WOMEN" data-en="SAFE 4 WOMEN"></h1>
 
-    <section class="eu">
-        <div class="container">
-            <h2>Europese context</h2>
-            <p>
-                Vrouwelijke veiligheid staat steeds meer centraal in Europese wetgeving en maatschappelijke discussies.
-                Recente rapporten van o.a. de Europese Commissie benadrukken dat geweld, intimidatie en onveiligheid 
-                steeds beter in kaart moeten worden gebracht.
-            </p>
-            <p>
-                S4W sluit hier direct op aan door technologie in te zetten om vrouwen te beschermen – zonder privacy op te offeren.
-            </p>
-        </div>
-    </section>
+    <!-- MISSION -->
+    <p id="mission"
+       data-nl="S4W is een onafhankelijk initiatief gericht op bewustwording, veiligheid en snelle hulp voor vrouwen. Deze pagina dient als eerste officiële oprichtingspunt en transparantieportaal."
+       data-en="S4W is an independent initiative focused on awareness, safety, and rapid support for women. This page serves as the first official founding reference and transparency portal.">
+    </p>
 
-    <section class="status">
-        <div class="container">
-            <h2>Projectstatus</h2>
-            <p>
-                <strong>Founding:</strong> Q4 2025  
-                <br>
-                Momenteel wordt gewerkt aan:
-            </p>
-            <ul>
-                <li>Technische fundering (MVP)</li>
-                <li>Internationale domeinstructuur</li>
-                <li>Juridische en privacy-vastlegging</li>
-                <li>Veiligheidskaders voor gemeenten en autoriteiten</li>
-            </ul>
-        </div>
-    </section>
+    <!-- COMING SOON -->
+    <div class="coming-soon">
+        <h2 data-nl="Binnenkort Beschikbaar" data-en="Coming Soon"></h2>
+        <p id="coming"
+           data-nl="We werken aan een digitale omgeving waarin vrouwen laagdrempelig ondersteuning, informatie en veiligheidsopties kunnen vinden."
+           data-en="We are building a digital environment where women can easily access support, information and safety options.">
+        </p>
+    </div>
 
-    <footer>
-        <div class="container">
-            <p>S4W – Safe For Women • Stichting in oprichting • 2025</p>
-        </div>
-    </footer>
+    <!-- LEGAL SECTION -->
+    <h2 data-nl="Juridische Basis" data-en="Legal Basis"></h2>
+    <p id="legal"
+       data-nl="Dit project bevindt zich in de vroegste non-commerciële fase (Fase 0). Alle inhoud, logo’s en domeinen worden uitsluitend gebruikt voor onderzoeks-, ontwikkelings- en maatschappelijke doeleinden."
+       data-en="This project is in the earliest non-commercial phase (Phase 0). All content, logos and domains are used solely for research, development and social purpose.">
+    </p>
+
+    <!-- TRANSPARENCY -->
+    <h2 data-nl="Transparantie" data-en="Transparency"></h2>
+    <p id="trans"
+       data-nl="Transparantie is een kernwaarde. Documenten, technische versies en tijdlijnen worden vastgelegd in een beveiligde GitHub repository."
+       data-en="Transparency is a core value. Documents, technical versions and timelines are archived in a secured GitHub repository.">
+    </p>
+
+</div>
+
+<footer>
+    © 2025 Safe 4 Women – Founding Record
+</footer>
+
+<!-- Language Switch Script -->
+<script>
+    let currentLang = "nl";
+
+    function toggleLanguage() {
+        currentLang = currentLang === "nl" ? "en" : "nl";
+        document.querySelectorAll("[data-nl]").forEach(el => {
+            el.innerHTML = el.getAttribute(`data-${currentLang}`);
+        });
+    }
+
+    // initialize default (NL)
+    toggleLanguage();
+    toggleLanguage(); // dubbel zodat NL als eerste actief is
+</script>
 
 </body>
 </html>
