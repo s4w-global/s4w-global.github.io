@@ -4,100 +4,72 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>S4W Global — Safe 4 Women</title>
+<title>Safe 4 Women – S4W Global</title>
 
-<!-- Manifest -->
-<link rel="manifest" href="/manifest.json">
-
-<!-- Favicon Set -->
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon-192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon-180.png">
-
-<!-- Stylesheet -->
 <link rel="stylesheet" href="/assets/css/style.css">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" href="/assets/img/favicon-32.png">
 
-<!-- OpenGraph -->
-<meta property="og:title" content="Safe 4 Women — S4W Global" />
-<meta property="og:description" content="A global initiative for women's safety, awareness and support." />
-<meta property="og:image" content="/assets/img/og-banner.png" />
-<meta property="og:url" content="https://s4w-global.com/en/" />
-<meta property="og:type" content="website" />
+<meta property="og:title" content="Safe 4 Women – S4W Global">
+<meta property="og:description" content="We are building an international safety platform designed for women. Stay updated on our launch.">
+<meta property="og:image" content="/assets/img/og-banner.png">
+<meta property="og:type" content="website">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Safe 4 Women — S4W Global" />
-<meta name="twitter:description" content="A global initiative for women's safety" />
-<meta name="twitter:image" content="/assets/img/og-banner.png" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Safe 4 Women – S4W Global">
+<meta name="twitter:description" content="We are building an international safety platform designed for women. Stay updated.">
+<meta name="twitter:image" content="/assets/img/og-banner.png">
 
 </head>
 
 <body class="dark">
 
-<header class="header-accent">
+<div class="header-accent">
     <div class="header-inner">
         <div class="logo-placeholder"></div>
-        <nav class="lang-switch">
-            <a href="/en/">EN</a>
-            <span>•</span>
+
+        <div class="lang-switch">
+            <a href="/en/" style="text-decoration:underline;">EN</a>
             <a href="/nl/">NL</a>
-        </nav>
+        </div>
     </div>
-</header>
+</div>
 
 <main class="content-box">
 
     <h1 class="title">SAFE 4 WOMEN</h1>
-    <p class="subtitle">
-        A global safety-first initiative focused on awareness, prevention, and rapid support for women.
-    </p>
+    <p class="subtitle">An international safety platform for women, built with privacy and security at the core.</p>
 
     <section class="coming-box">
         <h2>Launching Soon</h2>
-        <p>
-            We are working on a secure environment where women across Europe can access safety tools,
-            alerts, verified information and community support.
-        </p>
+        <p>We are working hard on the platform. Stay tuned and join the early-access list.</p>
     </section>
 
     <section class="optin">
-        <h3>Stay Updated</h3>
-        <p>Leave your email and we’ll notify you when the platform launches.</p>
+        <h3>Join the waitlist</h3>
 
-        <form action="https://formsubmit.co/info@s4w-global.com" method="POST">
-            <!-- Redirect after submit -->
+        <form method="POST" action="https://formsubmit.co/info@s4w-global.com">
+            <input type="email" name="email" required class="email-input" placeholder="Your email address">
+
             <input type="hidden" name="_next" value="https://s4w-global.com/en/thanks/">
-            <input type="hidden" name="_template" value="box">
-            <input type="hidden" name="_subject" value="New S4W Opt-In">
 
-            <!-- Honeypot -->
-            <input type="text" name="_honey" style="display:none">
-
-            <input type="email" name="email" class="email-input"
-                   placeholder="Your email address"
-                   required />
-
-            <button type="submit" class="btn-accent">Notify Me</button>
+            <button class="btn-accent">Notify me</button>
         </form>
     </section>
 
-    <section class="info-grid">
+    <div class="info-grid">
+
         <div class="info-card">
             <h3>Legal Basis</h3>
-            <p>
-                S4W Global currently operates in Phase 0 — a non-commercial,
-                research & foundation stage strictly aligned with EU data protection laws.
-            </p>
+            <p>We comply with European privacy laws (GDPR) with minimal data use.</p>
         </div>
 
         <div class="info-card">
             <h3>Transparency</h3>
-            <p>
-                All documentation, development logs and decision records are archived securely
-                in a timestamped repository for accountability.
-            </p>
+            <p>We communicate clearly, honestly, and fully about what we build and why.</p>
         </div>
-    </section>
+
+    </div>
 
 </main>
 
