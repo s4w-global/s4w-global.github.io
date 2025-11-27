@@ -1,253 +1,200 @@
-/* ==========================================================================
-   SAFE 4 WOMEN — S4W GLOBAL
-   Brand Stylesheet — v1.0
-   ========================================================================== */
+/* ====================================
+   SAFE 4 WOMEN – GLOBAL STYLE SYSTEM
+   ==================================== */
 
-/* ---------------------------------------------------------
-   1. ROOT VARIABLES (COLORS, SPACING, RADIUS, SHADOW)
-   --------------------------------------------------------- */
-
+/* ----- COLOR SYSTEM (from your palette) ----- */
 :root {
-    /* Primary Brand Colors */
-    --s4w-blue:   #2F5AFF;   /* vertrouwen */
-    --s4w-violet: #5C3DFF;   /* innovatie */
-    --s4w-aqua:   #31C8D9;   /* tech veiligheid */
+    --s4w-blue: #2F5AFF;
+    --s4w-violet: #5C3DFF;
+    --s4w-aqua: #31C8D9;
+    --s4w-softblack: #0D0D0F;
+    --s4w-cream: #F4F2EE;
+    --s4w-red: #FF4455;
+    --s4w-green: #2BCB89;
 
-    /* Secondary */
-    --s4w-black:  #0D0D0F;
-    --s4w-cream:  #F4F2EE;
+    --text-light: #F4F4F4;
+    --text-mid: #D6D6D6;
+    --text-dark: #333;
 
-    /* Accents */
-    --s4w-red:    #FF4455;
-    --s4w-green:  #2BCB89;
-
-    /* UI Defaults */
-    --bg: #ffffff;
-    --text: #222;
-    --text-muted: #666;
-
-    --radius: 16px;
-    --radius-sm: 8px;
-
-    --shadow: 0 6px 25px rgba(0,0,0,0.12);
-    --shadow-soft: 0 3px 10px rgba(0,0,0,0.08);
-
-    --max-width: 650px;
-    --section-gap: 2.4rem;
+    --radius: 20px;
+    --transition: 0.25s ease;
 }
 
-/* -------------------------------------------
-   2. DARK MODE (prefers-color-scheme)
-   ------------------------------------------- */
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg: #0D0D0F;
-        --text: #F4F2EE;
-        --text-muted: #bbb;
-        --shadow: 0 6px 30px rgba(0,0,0,0.35);
-    }
-}
-
-/* -------------------------------------------
-   3. BASE ELEMENTS
-   ------------------------------------------- */
-
-body {
+/* Global reset */
+* {
     margin: 0;
     padding: 0;
-    font-family: system-ui, -apple-system, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+body.dark {
+    background: #000;
+    color: var(--text-light);
+    -webkit-font-smoothing: antialiased;
 }
 
-a {
-    color: var(--s4w-blue);
-    text-decoration: none;
+/* ====================================
+   HEADER AREA
+   ==================================== */
+
+.header-accent {
+    width: 100%;
+    padding: 18px 0;
+    background: linear-gradient(90deg, var(--s4w-violet), var(--s4w-blue));
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
-/* -------------------------------------------
-   4. CONTAINER WRAPPER
-   ------------------------------------------- */
-
-.container {
-    max-width: var(--max-width);
+.header-inner {
+    width: 95%;
+    max-width: 900px;
     margin: auto;
-    padding: 2rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* -------------------------------------------
-   5. HEADINGS
-   ------------------------------------------- */
+/* Placeholder for logo */
+.logo-placeholder {
+    width: 140px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.15);
+}
 
-h1 {
+/* Language switch */
+.lang-switch {
+    display: flex;
+    gap: 12px;
+}
+
+.lang-switch a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.9;
+    transition: var(--transition);
+}
+
+.lang-switch a:hover {
+    opacity: 1;
+}
+
+
+/* ====================================
+   MAIN CONTENT BLOCK
+   ==================================== */
+
+.content-box {
+    margin: 60px auto;
+    width: 92%;
+    max-width: 900px;
+    background: #111;
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: 0 0 40px rgba(93, 60, 255, 0.25);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Title */
+.title {
+    font-size: 42px;
+    font-weight: 800;
     text-align: center;
-    color: var(--s4w-blue);
-    margin-bottom: 0.5rem;
-    font-size: 2.4rem;
+    background: linear-gradient(90deg, var(--s4w-aqua), var(--s4w-violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
     text-align: center;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    font-size: 1.15rem;
+    margin-top: 10px;
+    font-size: 18px;
+    color: var(--text-mid);
 }
 
-/* -------------------------------------------
-   6. LANGUAGE SWITCHER
-   ------------------------------------------- */
-
-.lang-switch {
-    text-align: right;
-    padding: 1rem 1.25rem 0;
-    font-size: 0.9rem;
+/* Coming soon box */
+.coming-box {
+    margin-top: 40px;
+    text-align: center;
 }
 
-.lang-switch a {
-    color: var(--s4w-aqua);
+.coming-box h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
 }
 
-.lang-switch span {
-    color: var(--text-muted);
-    margin: 0 0.35rem;
-}
-
-/* -------------------------------------------
-   7. CARDS (Coming Soon, Legal, Transparantie)
-   ------------------------------------------- */
-
-.coming-soon,
-.info-section > div {
-    background: var(--s4w-cream);
-    border-radius: var(--radius);
-    padding: 1.4rem 1.6rem;
-    margin-bottom: var(--section-gap);
-    box-shadow: var(--shadow-soft);
-}
-
-@media (prefers-color-scheme: dark) {
-    .coming-soon,
-    .info-section > div {
-        background: #182026;
-    }
-}
-
-.coming-soon h2,
-.info-section h3 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    color: var(--s4w-violet);
-}
-
-/* -------------------------------------------
-   8. INFO GRID
-   ------------------------------------------- */
-
-.info-section {
-    display: grid;
-    gap: 1.4rem;
-}
-
-@media (min-width: 600px) {
-    .info-section {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-/* -------------------------------------------
-   9. OPT-IN FORM
-   ------------------------------------------- */
-
+/* Opt-in */
 .optin {
-    margin-top: var(--section-gap);
-    margin-bottom: var(--section-gap);
+    margin-top: 40px;
+    text-align: center;
 }
 
 .optin h3 {
-    color: var(--s4w-violet);
+    font-size: 22px;
+    margin-bottom: 10px;
 }
 
-.optin form {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-}
-
-.optin input[type="email"] {
-    padding: 12px 14px;
-    font-size: 1rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid #ccc;
-    outline: none;
-}
-
-@media (prefers-color-scheme: dark) {
-    .optin input[type="email"] {
-        background: #111;
-        border-color: #333;
-        color: #fff;
-    }
-}
-
-.optin button {
-    background: var(--s4w-blue);
-    padding: 13px 16px;
-    color: white;
+.email-input {
+    width: 80%;
+    max-width: 350px;
+    padding: 14px;
+    border-radius: 10px;
     border: none;
-    border-radius: var(--radius-sm);
-    font-size: 1rem;
+    outline: none;
+    font-size: 16px;
+    background: #222;
+    color: var(--text-light);
+    margin-bottom: 14px;
+}
+
+.btn-accent {
+    display: inline-block;
+    padding: 14px 26px;
+    background: linear-gradient(90deg, var(--s4w-aqua), var(--s4w-blue));
+    color: black;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.2s ease;
+    font-weight: 700;
+    transition: var(--transition);
 }
 
-.optin button:hover {
-    background: var(--s4w-violet);
+.btn-accent:hover {
+    transform: scale(1.05);
 }
 
-/* -------------------------------------------
-   10. FOOTER
-   ------------------------------------------- */
+/* Info grid */
+.info-grid {
+    margin-top: 45px;
+    display: grid;
+    gap: 25px;
+}
 
+.info-card {
+    background: #181818;
+    padding: 22px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.info-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: var(--s4w-aqua);
+}
+
+/* Footer */
 footer {
     text-align: center;
-    margin-top: 2rem;
-    padding-bottom: 2rem;
-    color: var(--text-muted);
-    font-size: 0.85rem;
+    margin-top: 60px;
+    color: #666;
+    font-size: 14px;
 }
 
-/* -------------------------------------------
-   11. ACCESSIBILITY
-   ------------------------------------------- */
-
-button:focus,
-input:focus {
-    outline: 3px solid var(--s4w-aqua);
-    outline-offset: 2px;
-}
-
-.back-btn {
-    display: inline-block;
-    padding: 12px 20px;
-    background: var(--s4w-blue);
-    color: #fff;
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    transition: background 0.2s ease;
-}
-
-.back-btn:hover {
-    background: var(--s4w-violet);
+/* Responsive */
+@media (min-width: 700px) {
+    .info-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
