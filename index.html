@@ -1,159 +1,41 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safe 4 Women – Official Foundation Page</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Social OpenGraph -->
-    <meta property="og:title" content="Safe 4 Women – Protecting Women Worldwide">
-    <meta property="og:description" content="S4W is a global initiative focused on early warning, safety awareness and empowerment for women.">
-    <meta property="og:image" content="https://s4w-global.com/logo.png">
-    <meta property="og:type" content="website">
+    <title>S4W Global — Redirecting…</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- SEO -->
+    <meta name="robots" content="noindex" />
 
-    <!-- Basic Security Headers (informational only — must be set server-side) -->
-    <!--
-        Content-Security-Policy: default-src 'self'; img-src 'self' data:;
-        X-Frame-Options: DENY
-        X-Content-Type-Options: nosniff
-        Referrer-Policy: no-referrer-when-downgrade
-        Strict-Transport-Security: max-age=63072000; includeSubDomains;
-    -->
+    <!-- Fallback favicon -->
+    <link rel="icon" href="favicon.ico">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0d1a2b; /* donkerblauw zoals logo */
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-        }
+    <script>
+        (function() {
+            try {
+                const lang = navigator.language || navigator.userLanguage || "";
+                const lower = lang.toLowerCase();
 
-        .container {
-            max-width: 900px;
-            text-align: center;
-        }
-
-        img.logo {
-            width: 180px;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            color: #ff4fa3; /* roze accent */
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            color: #ddd;
-            margin-top: 30px;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-        }
-
-        p {
-            color: #eee;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .coming-soon {
-            background: #112035;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 25px;
-            border: 1px solid #26445f;
-        }
-
-        .language-toggle {
-            cursor: pointer;
-            background: #ff4fa3;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        footer {
-            margin-top: 50px;
-            color: #aaa;
-            font-size: 0.85rem;
-        }
-    </style>
+                if (lower.startsWith("nl")) {
+                    window.location.href = "/nl/";
+                } else {
+                    // fallback naar EN
+                    window.location.href = "/en/";
+                }
+            } catch(e) {
+                // fallback zonder JS
+                window.location.href = "/en/";
+            }
+        })();
+    </script>
 </head>
 
 <body>
-
-<div class="container">
-
-    <div class="language-toggle" onclick="toggleLanguage()">
-        English / Nederlands
-    </div>
-
-    <!-- LOGO -->
-    <img src="logo.png" alt="Safe 4 Women Logo" class="logo">
-
-    <!-- TITEL -->
-    <h1 data-nl="SAFE 4 WOMEN" data-en="SAFE 4 WOMEN"></h1>
-
-    <!-- MISSION -->
-    <p id="mission"
-       data-nl="S4W is een onafhankelijk initiatief gericht op bewustwording, veiligheid en snelle hulp voor vrouwen. Deze pagina dient als eerste officiële oprichtingspunt en transparantieportaal."
-       data-en="S4W is an independent initiative focused on awareness, safety, and rapid support for women. This page serves as the first official founding reference and transparency portal.">
+    <p style="font-family:Arial; text-align:center; margin-top:40px;">
+        Redirecting…
     </p>
-
-    <!-- COMING SOON -->
-    <div class="coming-soon">
-        <h2 data-nl="Binnenkort Beschikbaar" data-en="Coming Soon"></h2>
-        <p id="coming"
-           data-nl="We werken aan een digitale omgeving waarin vrouwen laagdrempelig ondersteuning, informatie en veiligheidsopties kunnen vinden."
-           data-en="We are building a digital environment where women can easily access support, information and safety options.">
-        </p>
-    </div>
-
-    <!-- LEGAL SECTION -->
-    <h2 data-nl="Juridische Basis" data-en="Legal Basis"></h2>
-    <p id="legal"
-       data-nl="Dit project bevindt zich in de vroegste non-commerciële fase (Fase 0). Alle inhoud, logo’s en domeinen worden uitsluitend gebruikt voor onderzoeks-, ontwikkelings- en maatschappelijke doeleinden."
-       data-en="This project is in the earliest non-commercial phase (Phase 0). All content, logos and domains are used solely for research, development and social purpose.">
-    </p>
-
-    <!-- TRANSPARENCY -->
-    <h2 data-nl="Transparantie" data-en="Transparency"></h2>
-    <p id="trans"
-       data-nl="Transparantie is een kernwaarde. Documenten, technische versies en tijdlijnen worden vastgelegd in een beveiligde GitHub repository."
-       data-en="Transparency is a core value. Documents, technical versions and timelines are archived in a secured GitHub repository.">
-    </p>
-
-</div>
-
-<footer>
-    © 2025 Safe 4 Women – Founding Record
-</footer>
-
-<!-- Language Switch Script -->
-<script>
-    let currentLang = "nl";
-
-    function toggleLanguage() {
-        currentLang = currentLang === "nl" ? "en" : "nl";
-        document.querySelectorAll("[data-nl]").forEach(el => {
-            el.innerHTML = el.getAttribute(`data-${currentLang}`);
-        });
-    }
-
-    // initialize default (NL)
-    toggleLanguage();
-    toggleLanguage(); // dubbel zodat NL als eerste actief is
-</script>
-
 </body>
 </html>
