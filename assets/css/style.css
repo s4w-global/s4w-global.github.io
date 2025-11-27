@@ -1,1 +1,253 @@
+/* ==========================================================================
+   SAFE 4 WOMEN — S4W GLOBAL
+   Brand Stylesheet — v1.0
+   ========================================================================== */
 
+/* ---------------------------------------------------------
+   1. ROOT VARIABLES (COLORS, SPACING, RADIUS, SHADOW)
+   --------------------------------------------------------- */
+
+:root {
+    /* Primary Brand Colors */
+    --s4w-blue:   #2F5AFF;   /* vertrouwen */
+    --s4w-violet: #5C3DFF;   /* innovatie */
+    --s4w-aqua:   #31C8D9;   /* tech veiligheid */
+
+    /* Secondary */
+    --s4w-black:  #0D0D0F;
+    --s4w-cream:  #F4F2EE;
+
+    /* Accents */
+    --s4w-red:    #FF4455;
+    --s4w-green:  #2BCB89;
+
+    /* UI Defaults */
+    --bg: #ffffff;
+    --text: #222;
+    --text-muted: #666;
+
+    --radius: 16px;
+    --radius-sm: 8px;
+
+    --shadow: 0 6px 25px rgba(0,0,0,0.12);
+    --shadow-soft: 0 3px 10px rgba(0,0,0,0.08);
+
+    --max-width: 650px;
+    --section-gap: 2.4rem;
+}
+
+/* -------------------------------------------
+   2. DARK MODE (prefers-color-scheme)
+   ------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0D0D0F;
+        --text: #F4F2EE;
+        --text-muted: #bbb;
+        --shadow: 0 6px 30px rgba(0,0,0,0.35);
+    }
+}
+
+/* -------------------------------------------
+   3. BASE ELEMENTS
+   ------------------------------------------- */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--s4w-blue);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* -------------------------------------------
+   4. CONTAINER WRAPPER
+   ------------------------------------------- */
+
+.container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 2rem 1.25rem;
+}
+
+/* -------------------------------------------
+   5. HEADINGS
+   ------------------------------------------- */
+
+h1 {
+    text-align: center;
+    color: var(--s4w-blue);
+    margin-bottom: 0.5rem;
+    font-size: 2.4rem;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 1.15rem;
+}
+
+/* -------------------------------------------
+   6. LANGUAGE SWITCHER
+   ------------------------------------------- */
+
+.lang-switch {
+    text-align: right;
+    padding: 1rem 1.25rem 0;
+    font-size: 0.9rem;
+}
+
+.lang-switch a {
+    color: var(--s4w-aqua);
+}
+
+.lang-switch span {
+    color: var(--text-muted);
+    margin: 0 0.35rem;
+}
+
+/* -------------------------------------------
+   7. CARDS (Coming Soon, Legal, Transparantie)
+   ------------------------------------------- */
+
+.coming-soon,
+.info-section > div {
+    background: var(--s4w-cream);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+    margin-bottom: var(--section-gap);
+    box-shadow: var(--shadow-soft);
+}
+
+@media (prefers-color-scheme: dark) {
+    .coming-soon,
+    .info-section > div {
+        background: #182026;
+    }
+}
+
+.coming-soon h2,
+.info-section h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--s4w-violet);
+}
+
+/* -------------------------------------------
+   8. INFO GRID
+   ------------------------------------------- */
+
+.info-section {
+    display: grid;
+    gap: 1.4rem;
+}
+
+@media (min-width: 600px) {
+    .info-section {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* -------------------------------------------
+   9. OPT-IN FORM
+   ------------------------------------------- */
+
+.optin {
+    margin-top: var(--section-gap);
+    margin-bottom: var(--section-gap);
+}
+
+.optin h3 {
+    color: var(--s4w-violet);
+}
+
+.optin form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.optin input[type="email"] {
+    padding: 12px 14px;
+    font-size: 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .optin input[type="email"] {
+        background: #111;
+        border-color: #333;
+        color: #fff;
+    }
+}
+
+.optin button {
+    background: var(--s4w-blue);
+    padding: 13px 16px;
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.optin button:hover {
+    background: var(--s4w-violet);
+}
+
+/* -------------------------------------------
+   10. FOOTER
+   ------------------------------------------- */
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* -------------------------------------------
+   11. ACCESSIBILITY
+   ------------------------------------------- */
+
+button:focus,
+input:focus {
+    outline: 3px solid var(--s4w-aqua);
+    outline-offset: 2px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: var(--s4w-blue);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.back-btn:hover {
+    background: var(--s4w-violet);
+}
