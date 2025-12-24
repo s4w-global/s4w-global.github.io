@@ -1,163 +1,221 @@
-/* ==========================================================
-   S4W – Dark Theme Stylesheet
-   Branding: Blue (#2F5AFF), Aqua (#31C8D9), Violet (#5C3DFF)
-   Background: Deep Black (#0D0D0F) / Charcoal (#13151B)
-   ========================================================== */
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: #0D0D0F;
-    color: #F4F2EE;
+:root{
+  --bg:#0b0f14;
+  --panel:#0f1620;
+  --panel-2:#121c28;
+  --text:#e7eef7;
+  --muted:#9fb0c3;
+  --border:#1f2a3a;
+  --accent:#5dd6ff;
+  --accent-2:#7c5cff;
+  --danger:#ff4d4d;
+  --warn:#ff9f43;
+  --ok:#2ecc71;
+  --shadow: 0 18px 50px rgba(0,0,0,.45);
+  --radius: 16px;
+  --max: 1120px;
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
 
-/* ------------------------------
-   Header & Navigation
-   ------------------------------ */
-
-header {
-    background: #13151B;
-    padding: 22px;
-    text-align: center;
-    border-bottom: 1px solid #1F2128;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font);
+  background: radial-gradient(1200px 600px at 15% 0%, rgba(124,92,255,.20), transparent 55%),
+              radial-gradient(900px 500px at 85% 10%, rgba(93,214,255,.18), transparent 55%),
+              var(--bg);
+  color:var(--text);
+  line-height:1.5;
 }
 
-nav a {
-    margin: 0 14px;
-    color: #31C8D9;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 15px;
+a{color:var(--accent); text-decoration:none}
+a:hover{opacity:.9; text-decoration:underline}
+
+.container{max-width:var(--max); margin:0 auto; padding:24px}
+.header{
+  position:sticky; top:0; z-index:10;
+  backdrop-filter: blur(14px);
+  background: rgba(11,15,20,.72);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 24px; max-width:var(--max); margin:0 auto}
+.brand{display:flex; align-items:center; gap:12px}
+.logo{
+  width:36px; height:36px; border-radius:12px;
+  background: linear-gradient(135deg, rgba(93,214,255,.95), rgba(124,92,255,.9));
+  box-shadow: 0 10px 30px rgba(93,214,255,.15);
+  display:grid; place-items:center;
+  font-weight:800; color:#081019;
+}
+.brand h1{font-size:14px; margin:0; letter-spacing:.3px}
+.brand small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
+
+.nav{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+.nav a{
+  color:var(--text);
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid transparent;
+}
+.nav a:hover{border-color:var(--border); background:rgba(255,255,255,.03); text-decoration:none}
+.nav a.active{border-color:rgba(93,214,255,.35); background:rgba(93,214,255,.08)}
+.pill{
+  font-size:12px; color:var(--muted);
+  border:1px solid var(--border);
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.02);
 }
 
-nav a:hover {
-    color: #2F5AFF;
+.hero{padding:38px 0 20px}
+.hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; align-items:stretch}
+@media (max-width: 920px){.hero-grid{grid-template-columns:1fr}}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015));
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+.card h2{margin:0 0 8px; font-size:22px}
+.card p{margin:0 0 12px; color:var(--muted)}
+.kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px}
+@media (max-width: 720px){.kpis{grid-template-columns:1fr}}
+.kpi{padding:12px; border-radius:14px; background:rgba(255,255,255,.02); border:1px solid var(--border)}
+.kpi b{display:block; font-size:18px}
+.kpi span{color:var(--muted); font-size:12px}
+
+.btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+button,.btn{
+  font-family:var(--font);
+  cursor:pointer;
+  border-radius:14px;
+  padding:10px 12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.03);
+  color:var(--text);
+}
+button:hover,.btn:hover{background:rgba(255,255,255,.05)}
+.btn-primary{
+  border-color:rgba(93,214,255,.35);
+  background:rgba(93,214,255,.08);
+}
+.btn-danger{
+  border-color:rgba(255,77,77,.4);
+  background:rgba(255,77,77,.10);
+}
+.btn-ghost{background:transparent}
+.btn-small{padding:7px 10px; border-radius:12px; font-size:13px}
+
+.grid-2{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
+@media (max-width: 920px){.grid-2{grid-template-columns:1fr}}
+
+.section-title{display:flex; align-items:end; justify-content:space-between; gap:12px; margin:12px 0}
+.section-title h2{margin:0; font-size:18px}
+.section-title p{margin:0; color:var(--muted); font-size:13px}
+
+hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
+
+.footer{
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  margin-top:28px;
+  padding:18px 0 28px;
+  font-size:12px;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:6px 10px;
+  background:rgba(255,255,255,.02);
+  color:var(--muted);
+  font-size:12px;
+}
+.badge-dot{width:8px; height:8px; border-radius:999px; background:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.note{padding:12px; border-radius:14px; border:1px dashed rgba(159,176,195,.35); color:var(--muted); background:rgba(255,255,255,.015)}
+
+.table{width:100%; border-collapse:separate; border-spacing:0}
+.table th,.table td{
+  padding:10px 10px;
+  border-bottom:1px solid var(--border);
+  font-size:14px;
+}
+.table th{color:var(--muted); font-weight:600; text-align:left; background:rgba(255,255,255,.02)}
+.table tr:hover td{background:rgba(255,255,255,.02)}
+.table td:last-child{text-align:right}
+.table .right{text-align:right}
+
+.switches{display:flex; gap:10px; flex-wrap:wrap}
+.switches button.active{
+  border-color:rgba(124,92,255,.45);
+  background:rgba(124,92,255,.10);
 }
 
-/* ------------------------------
-   Hero Section
-   ------------------------------ */
-
-.hero {
-    padding: 90px 25px;
-    background: #1A1C25;
-    text-align: center;
-    color: #31C8D9;
-    border-bottom: 1px solid #1F2128;
+.trend-badge{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:44px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  font-weight:700;
+  letter-spacing:.2px;
 }
 
-.hero h1 {
-    margin-bottom: 12px;
-    font-size: 36px;
-    color: #31C8D9;
+.trend-upstrong{border-color:rgba(255,68,85,.60); background:rgba(255,68,85,.14); color:#ffd0d0} /* ▲▲ strong increase */
+.trend-up{border-color:rgba(255,166,64,.60); background:rgba(255,166,64,.14); color:#ffe2c4}       /* ▲ increase */
+.trend-flat{border-color:rgba(43,203,137,.60); background:rgba(43,203,137,.12); color:#c9f6da}     /* ➝ stable */
+.legend{display:grid; gap:8px; margin-top:14px}
+.legend-row{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 12px; border:1px solid var(--border); border-radius:14px; background:rgba(255,255,255,.02)}
+.legend-row code{color:var(--text)}
+
+.map-wrap{position:relative}
+.map-canvas{
+  width:100%;
+  aspect-ratio: 16/9;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background: radial-gradient(800px 400px at 20% 20%, rgba(93,214,255,.08), transparent 60%),
+              radial-gradient(800px 400px at 80% 30%, rgba(124,92,255,.08), transparent 60%),
+              rgba(255,255,255,.02);
+  display:block;
 }
-
-/* ------------------------------
-   Buttons
-   ------------------------------ */
-
-.btn {
-    display: inline-block;
-    padding: 14px 26px;
-    margin-top: 15px;
-    background: #2F5AFF;
-    border-radius: 6px;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
+.map-overlay{
+  position:absolute; inset:14px auto auto 14px;
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
 }
-
-.btn:hover {
-    background: #5C3DFF;
+.map-overlay .badge{background:rgba(11,15,20,.55); backdrop-filter: blur(10px)}
+.side-list{max-height:420px; overflow:auto}
+.input{
+  width:100%;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  color:var(--text);
 }
+label{font-size:12px; color:var(--muted); display:block; margin:10px 0 6px}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width: 720px){.row{grid-template-columns:1fr}}
 
-.btn-danger {
-    background: #FF4455 !important;
+.modal-backdrop{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.6);
+  display:none; align-items:center; justify-content:center;
+  padding:20px;
+  z-index:50;
 }
-
-.btn-danger:hover {
-    background: #CC3344 !important;
+.modal{
+  width:min(680px, 100%);
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:16px;
 }
-
-/* ------------------------------
-   Content Sections
-   ------------------------------ */
-
-.section {
-    padding: 45px;
-    max-width: 950px;
-    margin: auto;
-}
-
-.section h1,
-.section h2 {
-    color: #31C8D9;
-}
-
-/* ------------------------------
-   Map Placeholder
-   ------------------------------ */
-
-.map {
-    width: 100%;
-    height: 450px;
-    background: #222;
-    border: 1px solid #333;
-    margin-bottom: 20px;
-}
-
-/* ------------------------------
-   Dashboard Tables
-   ------------------------------ */
-
-.dashboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 25px;
-}
-
-.dashboard-table th {
-    background: #1A1C25;
-    padding: 12px;
-    border: 1px solid #333;
-    color: #31C8D9;
-}
-
-.dashboard-table td {
-    padding: 12px;
-    border: 1px solid #333;
-}
-
-/* ------------------------------
-   Footer
-   ------------------------------ */
-
-footer {
-    background: #13151B;
-    padding: 25px;
-    text-align: center;
-    margin-top: 40px;
-    color: #888;
-    font-size: 14px;
-    border-top: 1px solid #1F2128;
-}
-
-/* ------------------------------
-   Responsive
-   ------------------------------ */
-
-@media (max-width: 700px) {
-    .hero {
-        padding: 60px 20px;
-    }
-
-    .btn {
-        padding: 12px 20px;
-    }
-
-    .section {
-        padding: 25px;
-    }
-}
+.modal h3{margin:0 0 8px}
+.modal .muted{margin:0 0 10px}
+.modal-actions{display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; margin-top:12px}

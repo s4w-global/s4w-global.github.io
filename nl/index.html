@@ -1,83 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <title>S4W – Safe 4 Women (MVP)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="S4W (Safe 4 Women) – privacy-first veiligheidsplatform MVP met heatmap, meldingen en dashboards voor gemeenten.">
-    <meta name="theme-color" content="#0D0D0F">
-
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/main.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S4W — Start</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
-
 <body>
-
-<header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="safety-map.html">Veiligheidskaart</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="contact.html">Contact</a>
-
-        <span style="margin-left:20px; color:#555;">|</span>
-        <a href="../en/index.html" title="Switch to English">EN</a>
-    </nav>
-</header>
-
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="logo">S4W</div>
+        <div>
+          <h1>Safe 4 Women</h1>
+          <small>Global Safety Platform — MVP Demo</small>
+        </div>
+      </div>
+      <nav class="nav">
+        <a data-nav href="./index.html">Home</a>
+        <a data-nav href="./safety-map.html">Safety Map</a>
+        <a data-nav href="./dashboard.html">Dashboard</a>
+        <a data-nav href="./contact.html">Contact</a>
+        <span class="pill">EN/NL auto</span>
+        <button id="langToggle" class="btn btn-small btn-ghost" type="button">EN ⇄ NL</button>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    
 <section class="hero">
-    <h1>S4W – Safe 4 Women</h1>
-    <p style="max-width:800px; margin: 0 auto; color:#bbb; font-size:16px;">
-        Een privacy-first veiligheidsplatform (MVP) dat laat zien hoe meldingen,
-        heatmaps en dashboards kunnen bijdragen aan beter inzicht in vrouwenveiligheid.
-    </p>
-
-    <div style="margin-top:22px;">
-        <a class="btn" href="safety-map.html">Open Veiligheidskaart</a>
-        <a class="btn" href="dashboard.html" style="margin-left:10px;">Open Dashboard</a>
+  <div class="hero-grid">
+    <div class="card">
+      <h2>Veiligere straten. Sneller handelen.</h2>
+      <p>
+        S4W is een wereldwijd veiligheidsplatform dat vrouwen helpt om onveilige locaties te herkennen,
+        meldingen te doen en lokale sturing mogelijk te maken via duidelijke dashboards — startend met een praktische MVP.
+      </p>
+      <div class="btnrow">
+        <a class="btn btn-primary" href="./safety-map.html">Open Safety Map</a>
+        <a class="btn" href="./dashboard.html">Bekijk Dashboard</a>
+        <button class="btn btn-danger" type="button" data-toast="Paniekknop placeholder (MVP).">Paniekknop (UX)</button>
+      </div>
+      <hr class="sep" />
+      <div class="kpis">
+        <div class="kpi"><b>Client-side demo</b><span>Nog geen backend (Phase 1 later)</span></div>
+        <div class="kpi"><b>Heatmap + melden</b><span>Melding verschijnt direct</span></div>
+        <div class="kpi"><b>Gemeente-ready</b><span>Dashboard voor pilots & beleid</span></div>
+      </div>
     </div>
-
-    <div style="margin-top:22px; font-size:13px; color:#888;">
-        MVP-demo — geen echte noodoproepen of live dataverwerking.
+    <div class="card">
+      <div class="section-title">
+        <h2>MVP must-haves</h2>
+        <p>Wat zit er in deze sprint</p>
+      </div>
+      <ul class="muted" style="margin:0; padding-left:18px">
+        <li>Heatmap demo (dummy data)</li>
+        <li>Onveilige locatie melden (direct zichtbaar)</li>
+        <li>Paniekknop zichtbaar (UX placeholder)</li>
+        <li>Dashboard demo voor: gemeentes, regio’s, landen, continenten</li>
+        <li>Trend legenda + kleur badges (▲▲ / ▲ / ➝)</li>
+      </ul>
+      <hr class="sep" />
+      <div class="note">
+        Next: Leaflet + OpenStreetMap integratie, echte dark tiles, heat layer + markers, Chart.js grafieken, gemeente pitchpagina, privacy/legal uitbreiding.
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="section">
-    <h2>Wat laat deze MVP zien?</h2>
-    <ul style="line-height:1.8; color:#ddd;">
-        <li><b>Heatmap-demo</b> met voorbeeldmeldingen (privacy-by-design).</li>
-        <li><b>Dashboard voor gemeenten</b> en andere bestuurslagen.</li>
-        <li><b>Panic button</b> (UX-placeholder, nog niet functioneel).</li>
-        <li><b>Meld onveilige locatie</b> — direct zichtbaar in de heatmap (client-side demo).</li>
-    </ul>
-
-    <div style="margin-top:30px; padding:18px; border:1px solid #333; border-radius:8px; background:#14161D;">
-        <h3 style="margin-top:0; color:#31C8D9;">Waarom nu?</h3>
-        <p style="color:#bbb; margin-bottom:10px;">
-            Steeds meer gemeenten zoeken naar een centraal digitaal hulppunt
-            tegen (seksueel) geweld en onveiligheid in de openbare ruimte.
-        </p>
-        <p style="margin:0;">
-            <a class="btn" href="dashboard.html">Bekijk dashboard voor gemeenten</a>
-        </p>
+    <div class="footer">
+      <div class="badge"><span class="badge-dot"></span> MVP demo • client-side only • no personal data</div>
+      <div style="margin-top:10px" class="small">
+        Disclaimer: This MVP is a pitch-ready prototype. Reporting and map data are stored locally in your browser for demo purposes only.
+      </div>
     </div>
-
-    <div style="margin-top:40px;">
-        <h2>Uitgangspunten</h2>
-        <ul style="line-height:1.8; color:#ddd;">
-            <li>Geen surveillance</li>
-            <li>Geen identiteitsopslag</li>
-            <li>Privacy-by-default</li>
-            <li>Gemeenschapsgerichte meldingen met misbruikpreventie</li>
-            <li>Ontworpen om wereldwijd te schalen</li>
-        </ul>
-    </div>
-</section>
-
-<footer>
-    © 2025 S4W Global – Safe 4 Women
-</footer>
-
+  </main>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>
