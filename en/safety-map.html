@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>S4W – Safety Map (MVP)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="S4W MVP Safety Map: heatmap demo with reporting flow and panic button placeholder.">
+    <meta name="theme-color" content="#0D0D0F">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/main.js"></script>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="safety-map.html">Safety Map</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="contact.html">Contact</a>
+
+        <span style="margin-left:20px; color:#555;">|</span>
+        <a href="../nl/safety-map.html" title="Switch to Dutch">NL</a>
+    </nav>
+</header>
+
+<section class="hero" style="padding:55px 20px;">
+    <h1>Safety Map (MVP Demo)</h1>
+    <p style="max-width:820px; margin: 0 auto; color:#bbb; font-size:16px;">
+        This is a demo visualization. Reports are shown as clustered entries (privacy-first).
+        In production, heat patterns would be blurred and aggregated by design.
+    </p>
+
+    <div style="margin-top:18px;">
+        <a class="btn" href="dashboard.html">Open Dashboard</a>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Heatmap Preview</h2>
+
+    <!-- Heatmap container (dummy UI) -->
+    <div id="heatmap" class="map">
+        <div style="padding:20px; color:#888;">
+            Heatmap not loaded yet. Click "Load Heatmap" to show demo data.
+        </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div style="margin-top:14px;">
+        <button class="btn" onclick="s4wLoadHeatmap()">Load Heatmap</button>
+
+        <button class="btn btn-danger" style="margin-left:10px;"
+            onclick="s4wReportUnsafe('en')">
+            Report Unsafe Location
+        </button>
+
+        <!-- Panic button (UX placeholder) -->
+        <button class="btn" style="margin-left:10px; background:#5C3DFF;"
+            onclick="alert('Panic Button (Demo)\\n\\nIn the real app, this would trigger emergency escalation and safe-contact workflows.\\n\\nThis MVP only shows the user experience.')">
+            Panic Button (Demo)
+        </button>
+    </div>
+
+    <!-- Explanation -->
+    <div style="margin-top:30px; padding:18px; border:1px solid #333; border-radius:8px; background:#14161D;">
+        <h3 style="margin-top:0; color:#31C8D9;">Privacy by design</h3>
+        <p style="color:#bbb; margin-bottom:0;">
+            This MVP does not store personal identity and does not provide exact GPS traces.
+            The demo heatmap is displayed as a privacy-first cluster representation.
+        </p>
+    </div>
+
+    <div style="margin-top:25px; color:#888; font-size:13px;">
+        Tip: Click “Report Unsafe Location” to add a new demo entry and instantly refresh the heatmap.
+    </div>
+</section>
+
+<footer>
+    © 2025 S4W Global – Safe 4 Women
+</footer>
+
+</body>
+</html>

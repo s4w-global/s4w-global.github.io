@@ -1,90 +1,82 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>S4W – Safe 4 Women (MVP)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Safe 4 Women – S4W Global</title>
+    <meta name="description" content="S4W (Safe 4 Women) – privacy-first veiligheidsplatform MVP met heatmap, meldingen en dashboards voor gemeenten.">
+    <meta name="theme-color" content="#0D0D0F">
 
-<!-- CSS -->
-<link rel="stylesheet" href="/assets/css/style.css">
-
-<!-- Manifest -->
-<link rel="manifest" href="/manifest.json">
-
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="/assets/img/favicon-32.png">
-
-<!-- OpenGraph -->
-<meta property="og:title" content="Safe 4 Women – S4W Global">
-<meta property="og:description" content="Wij bouwen aan een internationaal veiligheidsplatform voor vrouwen. Blijf op de hoogte van de lancering.">
-<meta property="og:image" content="/assets/img/og-banner.png">
-<meta property="og:type" content="website">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Safe 4 Women – S4W Global">
-<meta name="twitter:description" content="Wij bouwen aan een internationaal veiligheidsplatform voor vrouwen. Blijf op de hoogte.">
-<meta name="twitter:image" content="/assets/img/og-banner.png">
-
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/main.js"></script>
 </head>
 
-<body class="dark">
+<body>
 
-<!-- HEADER -->
-<div class="header-accent">
-    <div class="header-inner">
-        <div class="logo-placeholder"></div>
+<header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="safety-map.html">Veiligheidskaart</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="contact.html">Contact</a>
 
-        <div class="lang-switch">
-            <a href="/en/">EN</a>
-            <a href="/nl/" style="text-decoration:underline;">NL</a>
-        </div>
-    </div>
-</div>
+        <span style="margin-left:20px; color:#555;">|</span>
+        <a href="../en/index.html" title="Switch to English">EN</a>
+    </nav>
+</header>
 
-<!-- MAIN CONTENT -->
-<main class="content-box">
+<section class="hero">
+    <h1>S4W – Safe 4 Women</h1>
+    <p style="max-width:800px; margin: 0 auto; color:#bbb; font-size:16px;">
+        Een privacy-first veiligheidsplatform (MVP) dat laat zien hoe meldingen,
+        heatmaps en dashboards kunnen bijdragen aan beter inzicht in vrouwenveiligheid.
+    </p>
 
-    <h1 class="title">SAFE 4 WOMEN</h1>
-    <p class="subtitle">Een internationale veiligheidsoplossing voor vrouwen, gebouwd met privacy en veiligheid als kern.</p>
-
-    <section class="coming-box">
-        <h2>Lancering binnenkort</h2>
-        <p>We werken hard aan het platform. Houd ons in de gaten en meld je aan voor updates.</p>
-    </section>
-
-    <section class="optin">
-        <h3>Meld je aan voor updates</h3>
-
-        <form method="POST" action="https://formsubmit.co/59aad0a8a9b41ae6eee97d61c22c2403">
-            <input type="email" name="email" required class="email-input" placeholder="Jouw e-mailadres">
-
-            <!-- Redirect -->
-            <input type="hidden" name="_next" value="https://s4w-global.com/nl/thanks/">
-
-            <button class="btn-accent">Aanmelden</button>
-        </form>
-    </section>
-
-    <div class="info-grid">
-
-        <div class="info-card">
-            <h3>Juridische Basis</h3>
-            <p>Wij werken volgens Europese privacywetgeving (GDPR/AVG) met minimaal datagebruik.</p>
-        </div>
-
-        <div class="info-card">
-            <h3>Transparantie</h3>
-            <p>Wij communiceren helder, eerlijk en volledig over wat we bouwen en waarom.</p>
-        </div>
-
+    <div style="margin-top:22px;">
+        <a class="btn" href="safety-map.html">Open Veiligheidskaart</a>
+        <a class="btn" href="dashboard.html" style="margin-left:10px;">Open Dashboard</a>
     </div>
 
-</main>
+    <div style="margin-top:22px; font-size:13px; color:#888;">
+        MVP-demo — geen echte noodoproepen of live dataverwerking.
+    </div>
+</section>
+
+<section class="section">
+    <h2>Wat laat deze MVP zien?</h2>
+    <ul style="line-height:1.8; color:#ddd;">
+        <li><b>Heatmap-demo</b> met voorbeeldmeldingen (privacy-by-design).</li>
+        <li><b>Dashboard voor gemeenten</b> en andere bestuurslagen.</li>
+        <li><b>Panic button</b> (UX-placeholder, nog niet functioneel).</li>
+        <li><b>Meld onveilige locatie</b> — direct zichtbaar in de heatmap (client-side demo).</li>
+    </ul>
+
+    <div style="margin-top:30px; padding:18px; border:1px solid #333; border-radius:8px; background:#14161D;">
+        <h3 style="margin-top:0; color:#31C8D9;">Waarom nu?</h3>
+        <p style="color:#bbb; margin-bottom:10px;">
+            Steeds meer gemeenten zoeken naar een centraal digitaal hulppunt
+            tegen (seksueel) geweld en onveiligheid in de openbare ruimte.
+        </p>
+        <p style="margin:0;">
+            <a class="btn" href="dashboard.html">Bekijk dashboard voor gemeenten</a>
+        </p>
+    </div>
+
+    <div style="margin-top:40px;">
+        <h2>Uitgangspunten</h2>
+        <ul style="line-height:1.8; color:#ddd;">
+            <li>Geen surveillance</li>
+            <li>Geen identiteitsopslag</li>
+            <li>Privacy-by-default</li>
+            <li>Gemeenschapsgerichte meldingen met misbruikpreventie</li>
+            <li>Ontworpen om wereldwijd te schalen</li>
+        </ul>
+    </div>
+</section>
 
 <footer>
-    © 2025 Safe 4 Women — S4W Global
+    © 2025 S4W Global – Safe 4 Women
 </footer>
 
 </body>

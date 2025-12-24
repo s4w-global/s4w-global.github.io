@@ -1,80 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>S4W – Safe 4 Women (MVP)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Safe 4 Women – S4W Global</title>
+    <meta name="description" content="S4W (Safe 4 Women) – privacy-first safety platform MVP with heatmap, reporting and municipality dashboards.">
+    <meta name="theme-color" content="#0D0D0F">
 
-<link rel="stylesheet" href="/assets/css/style.css">
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" type="image/png" href="/assets/img/favicon-32.png">
-
-<meta property="og:title" content="Safe 4 Women – S4W Global">
-<meta property="og:description" content="We are building an international safety platform designed for women. Stay updated on our launch.">
-<meta property="og:image" content="/assets/img/og-banner.png">
-<meta property="og:type" content="website">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Safe 4 Women – S4W Global">
-<meta name="twitter:description" content="We are building an international safety platform designed for women. Stay updated.">
-<meta name="twitter:image" content="/assets/img/og-banner.png">
-
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/main.js"></script>
 </head>
 
-<body class="dark">
+<body>
 
-<div class="header-accent">
-    <div class="header-inner">
-        <div class="logo-placeholder"></div>
+<header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="safety-map.html">Safety Map</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="contact.html">Contact</a>
 
-        <div class="lang-switch">
-            <a href="/en/" style="text-decoration:underline;">EN</a>
-            <a href="/nl/">NL</a>
-        </div>
-    </div>
-</div>
+        <span style="margin-left:20px; color:#555;">|</span>
+        <a href="../nl/index.html" title="Switch to Dutch">NL</a>
+    </nav>
+</header>
 
-<main class="content-box">
+<section class="hero">
+    <h1>S4W – Safe 4 Women</h1>
+    <p style="max-width:800px; margin: 0 auto; color:#bbb; font-size:16px;">
+        A privacy-first safety platform MVP that demonstrates a heatmap, reporting flow,
+        and dashboards for municipalities, regions, countries and continents.
+    </p>
 
-    <h1 class="title">SAFE 4 WOMEN</h1>
-    <p class="subtitle">An international safety platform for women, built with privacy and security at the core.</p>
-
-    <section class="coming-box">
-        <h2>Launching Soon</h2>
-        <p>We are working hard on the platform. Stay tuned and join the early-access list.</p>
-    </section>
-
-    <section class="optin">
-        <h3>Join the waitlist</h3>
-
-        <form method="POST" action="https://formsubmit.co/59aad0a8a9b41ae6eee97d61c22c2403">
-            <input type="email" name="email" required class="email-input" placeholder="Your email address">
-
-            <input type="hidden" name="_next" value="https://s4w-global.com/en/thanks/">
-
-            <button class="btn-accent">Notify me</button>
-        </form>
-    </section>
-
-    <div class="info-grid">
-
-        <div class="info-card">
-            <h3>Legal Basis</h3>
-            <p>We comply with European privacy laws (GDPR) with minimal data use.</p>
-        </div>
-
-        <div class="info-card">
-            <h3>Transparency</h3>
-            <p>We communicate clearly, honestly, and fully about what we build and why.</p>
-        </div>
-
+    <div style="margin-top:22px;">
+        <a class="btn" href="safety-map.html">Open Safety Map</a>
+        <a class="btn" href="dashboard.html" style="margin-left:10px;">Open Dashboard</a>
     </div>
 
-</main>
+    <div style="margin-top:22px; font-size:13px; color:#888;">
+        MVP demo only — no real emergency calls or live data storage.
+    </div>
+</section>
+
+<section class="section">
+    <h2>What this MVP shows</h2>
+    <ul style="line-height:1.8; color:#ddd;">
+        <li><b>Heatmap demo</b> with dummy safety reports (privacy-by-design view).</li>
+        <li><b>Municipality dashboard demo</b> (municipality → region → country → continent).</li>
+        <li><b>Panic button</b> (UX placeholder) — visible, not functional yet.</li>
+        <li><b>Report unsafe location</b> flow — adds a new entry to the heatmap instantly (client-side).</li>
+    </ul>
+
+    <div style="margin-top:30px; padding:18px; border:1px solid #333; border-radius:8px; background:#14161D;">
+        <h3 style="margin-top:0; color:#31C8D9;">Why now?</h3>
+        <p style="color:#bbb; margin-bottom:10px;">
+            Municipalities are increasingly looking for a central digital safety hub against gender-based violence.
+            S4W can serve as an independent, privacy-first platform that enables visibility, reporting and decision support.
+        </p>
+        <p style="margin:0;">
+            <a class="btn" href="dashboard.html">Show municipality dashboard</a>
+        </p>
+    </div>
+
+    <div style="margin-top:40px;">
+        <h2>Core principles</h2>
+        <ul style="line-height:1.8; color:#ddd;">
+            <li>Zero surveillance</li>
+            <li>Zero identity tracking</li>
+            <li>Privacy-by-default</li>
+            <li>Community-driven reporting with abuse-prevention layers</li>
+            <li>Designed to scale globally</li>
+        </ul>
+    </div>
+</section>
 
 <footer>
-    © 2025 Safe 4 Women — S4W Global
+    © 2025 S4W Global – Safe 4 Women
 </footer>
 
 </body>

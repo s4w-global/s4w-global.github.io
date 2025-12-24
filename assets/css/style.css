@@ -1,200 +1,163 @@
-/* ====================================
-   SAFE 4 WOMEN – GLOBAL STYLE SYSTEM
-   ==================================== */
+/* ==========================================================
+   S4W – Dark Theme Stylesheet
+   Branding: Blue (#2F5AFF), Aqua (#31C8D9), Violet (#5C3DFF)
+   Background: Deep Black (#0D0D0F) / Charcoal (#13151B)
+   ========================================================== */
 
-/* ----- COLOR SYSTEM (from your palette) ----- */
-:root {
-    --s4w-blue: #2F5AFF;
-    --s4w-violet: #5C3DFF;
-    --s4w-aqua: #31C8D9;
-    --s4w-softblack: #0D0D0F;
-    --s4w-cream: #F4F2EE;
-    --s4w-red: #FF4455;
-    --s4w-green: #2BCB89;
-
-    --text-light: #F4F4F4;
-    --text-mid: #D6D6D6;
-    --text-dark: #333;
-
-    --radius: 20px;
-    --transition: 0.25s ease;
-}
-
-/* Global reset */
-* {
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", sans-serif;
+    font-family: Arial, sans-serif;
+    background: #0D0D0F;
+    color: #F4F2EE;
 }
 
-body.dark {
-    background: #000;
-    color: var(--text-light);
-    -webkit-font-smoothing: antialiased;
+/* ------------------------------
+   Header & Navigation
+   ------------------------------ */
+
+header {
+    background: #13151B;
+    padding: 22px;
+    text-align: center;
+    border-bottom: 1px solid #1F2128;
 }
 
-/* ====================================
-   HEADER AREA
-   ==================================== */
-
-.header-accent {
-    width: 100%;
-    padding: 18px 0;
-    background: linear-gradient(90deg, var(--s4w-violet), var(--s4w-blue));
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
-}
-
-.header-inner {
-    width: 95%;
-    max-width: 900px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Placeholder for logo */
-.logo-placeholder {
-    width: 140px;
-    height: 40px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.15);
-}
-
-/* Language switch */
-.lang-switch {
-    display: flex;
-    gap: 12px;
-}
-
-.lang-switch a {
-    color: white;
+nav a {
+    margin: 0 14px;
+    color: #31C8D9;
     text-decoration: none;
-    font-weight: 600;
-    opacity: 0.9;
-    transition: var(--transition);
+    font-weight: bold;
+    font-size: 15px;
 }
 
-.lang-switch a:hover {
-    opacity: 1;
+nav a:hover {
+    color: #2F5AFF;
 }
 
+/* ------------------------------
+   Hero Section
+   ------------------------------ */
 
-/* ====================================
-   MAIN CONTENT BLOCK
-   ==================================== */
-
-.content-box {
-    margin: 60px auto;
-    width: 92%;
-    max-width: 900px;
-    background: #111;
-    border-radius: var(--radius);
-    padding: 40px;
-    box-shadow: 0 0 40px rgba(93, 60, 255, 0.25);
-    border: 1px solid rgba(255,255,255,0.06);
-}
-
-/* Title */
-.title {
-    font-size: 42px;
-    font-weight: 800;
+.hero {
+    padding: 90px 25px;
+    background: #1A1C25;
     text-align: center;
-    background: linear-gradient(90deg, var(--s4w-aqua), var(--s4w-violet));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #31C8D9;
+    border-bottom: 1px solid #1F2128;
 }
 
-.subtitle {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 18px;
-    color: var(--text-mid);
-}
-
-/* Coming soon box */
-.coming-box {
-    margin-top: 40px;
-    text-align: center;
-}
-
-.coming-box h2 {
-    font-size: 28px;
+.hero h1 {
     margin-bottom: 12px;
+    font-size: 36px;
+    color: #31C8D9;
 }
 
-/* Opt-in */
-.optin {
-    margin-top: 40px;
-    text-align: center;
-}
+/* ------------------------------
+   Buttons
+   ------------------------------ */
 
-.optin h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-
-.email-input {
-    width: 80%;
-    max-width: 350px;
-    padding: 14px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    background: #222;
-    color: var(--text-light);
-    margin-bottom: 14px;
-}
-
-.btn-accent {
+.btn {
     display: inline-block;
     padding: 14px 26px;
-    background: linear-gradient(90deg, var(--s4w-aqua), var(--s4w-blue));
-    color: black;
-    border: none;
-    border-radius: 10px;
+    margin-top: 15px;
+    background: #2F5AFF;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
     cursor: pointer;
-    font-weight: 700;
-    transition: var(--transition);
 }
 
-.btn-accent:hover {
-    transform: scale(1.05);
+.btn:hover {
+    background: #5C3DFF;
 }
 
-/* Info grid */
-.info-grid {
-    margin-top: 45px;
-    display: grid;
-    gap: 25px;
+.btn-danger {
+    background: #FF4455 !important;
 }
 
-.info-card {
-    background: #181818;
-    padding: 22px;
-    border-radius: var(--radius);
-    border: 1px solid rgba(255,255,255,0.05);
+.btn-danger:hover {
+    background: #CC3344 !important;
 }
 
-.info-card h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
-    color: var(--s4w-aqua);
+/* ------------------------------
+   Content Sections
+   ------------------------------ */
+
+.section {
+    padding: 45px;
+    max-width: 950px;
+    margin: auto;
 }
 
-/* Footer */
+.section h1,
+.section h2 {
+    color: #31C8D9;
+}
+
+/* ------------------------------
+   Map Placeholder
+   ------------------------------ */
+
+.map {
+    width: 100%;
+    height: 450px;
+    background: #222;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+}
+
+/* ------------------------------
+   Dashboard Tables
+   ------------------------------ */
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+.dashboard-table th {
+    background: #1A1C25;
+    padding: 12px;
+    border: 1px solid #333;
+    color: #31C8D9;
+}
+
+.dashboard-table td {
+    padding: 12px;
+    border: 1px solid #333;
+}
+
+/* ------------------------------
+   Footer
+   ------------------------------ */
+
 footer {
+    background: #13151B;
+    padding: 25px;
     text-align: center;
-    margin-top: 60px;
-    color: #666;
+    margin-top: 40px;
+    color: #888;
     font-size: 14px;
+    border-top: 1px solid #1F2128;
 }
 
-/* Responsive */
-@media (min-width: 700px) {
-    .info-grid {
-        grid-template-columns: 1fr 1fr;
+/* ------------------------------
+   Responsive
+   ------------------------------ */
+
+@media (max-width: 700px) {
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+    }
+
+    .section {
+        padding: 25px;
     }
 }

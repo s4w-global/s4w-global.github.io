@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>S4W – Dashboard (MVP)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="S4W dashboard MVP – geaggregeerde, privacy-first inzichten voor gemeenten, regio’s, landen en continenten.">
+    <meta name="theme-color" content="#0D0D0F">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/main.js"></script>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="safety-map.html">Veiligheidskaart</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="contact.html">Contact</a>
+
+        <span style="margin-left:20px; color:#555;">|</span>
+        <a href="../en/dashboard.html" title="Switch to English">EN</a>
+    </nav>
+</header>
+
+<section class="hero" style="padding:55px 20px;">
+    <h1>Veiligheidsdashboard (MVP Demo)</h1>
+    <p style="max-width:820px; margin: 0 auto; color:#bbb; font-size:16px;">
+        Geaggregeerde, privacy-first inzichten voor gemeenten, regio’s, landen en continenten.
+        Deze dashboarddata is dummy-data voor demonstratie.
+    </p>
+</section>
+
+<section class="section">
+    <h2>Overzicht</h2>
+
+    <!-- KPI cards -->
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
+        <div style="background:#14161D; border:1px solid #333; border-radius:8px; padding:16px;">
+            <div style="color:#31C8D9; font-size:14px;">Totaal aantal meldingen</div>
+            <div style="font-size:26px; font-weight:bold;">870</div>
+        </div>
+        <div style="background:#14161D; border:1px solid #333; border-radius:8px; padding:16px;">
+            <div style="color:#31C8D9; font-size:14px;">Hoog-risico gebieden</div>
+            <div style="font-size:26px; font-weight:bold; color:#FF4455;">124</div>
+        </div>
+        <div style="background:#14161D; border:1px solid #333; border-radius:8px; padding:16px;">
+            <div style="color:#31C8D9; font-size:14px;">Actieve regio’s</div>
+            <div style="font-size:26px; font-weight:bold;">37</div>
+        </div>
+        <div style="background:#14161D; border:1px solid #333; border-radius:8px; padding:16px;">
+            <div style="color:#31C8D9; font-size:14px;">Trend</div>
+            <div style="font-size:26px; font-weight:bold;">▲</div>
+        </div>
+    </div>
+
+    <!-- Level selector -->
+    <div style="margin-top:35px;">
+        <h2>Weergaveniveau</h2>
+
+        <div style="margin-bottom:12px;">
+            <button class="btn" onclick="s4wSwitchDashboard('municipality')">Gemeente</button>
+            <button class="btn" onclick="s4wSwitchDashboard('region')" style="margin-left:6px;">Regio</button>
+            <button class="btn" onclick="s4wSwitchDashboard('country')" style="margin-left:6px;">Land</button>
+            <button class="btn" onclick="s4wSwitchDashboard('continent')" style="margin-left:6px;">Continent</button>
+        </div>
+
+        <!-- Data table -->
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>Gebied</th>
+                    <th>Meldingen</th>
+                    <th>Trend</th>
+                </tr>
+            </thead>
+            <tbody id="dashboardTableBody">
+                <tr>
+                    <td>Amsterdam</td>
+                    <td>41</td>
+                    <td>▲</td>
+                </tr>
+                <tr>
+                    <td>Rotterdam</td>
+                    <td>32</td>
+                    <td>▲▲</td>
+                </tr>
+                <tr>
+                    <td>Utrecht</td>
+                    <td>18</td>
+                    <td>➝</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Explanation -->
+    <div style="margin-top:30px; padding:18px; border:1px solid #333; border-radius:8px; background:#14161D;">
+        <h3 style="margin-top:0; color:#31C8D9;">Waarom dit helpt</h3>
+        <p style="color:#bbb; margin-bottom:0;">
+            Dit dashboard laat zien hoe geanonimiseerde veiligheidssignalen kunnen worden geaggregeerd per bestuurslaag —
+            zonder identiteiten of exacte locaties zichtbaar te maken.
+            In productie ondersteunt dit gericht beleid, preventie en samenwerking.
+        </p>
+    </div>
+</section>
+
+<footer>
+    © 2025 S4W Global – Safe 4 Women
+</footer>
+
+</body>
+</html>
