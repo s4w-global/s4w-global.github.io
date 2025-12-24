@@ -53,9 +53,29 @@
         </div>
         <div style="background:#14161D; border:1px solid #333; border-radius:8px; padding:16px;">
             <div style="color:#31C8D9; font-size:14px;">Trend</div>
-            <div style="font-size:26px; font-weight:bold;">▲</div>
+            <div style="font-size:26px; font-weight:bold;">
+                <span class="trend trend-up">▲</span>
+            </div>
         </div>
     </div>
+
+    <!-- Trend styles (kept local to dashboard) -->
+    <style>
+        .trend {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-weight: 700;
+            border: 1px solid #333;
+            background: #14161D;
+        }
+        .trend-upstrong { color: #FF4455; border-color: #FF4455; } /* ▲▲ sterke stijging */
+        .trend-up       { color: #FFA640; border-color: #FFA640; } /* ▲ stijging */
+        .trend-flat     { color: #2BCB89; border-color: #2BCB89; } /* ➝ stabiel */
+    </style>
 
     <!-- Level selector -->
     <div style="margin-top:35px;">
@@ -81,20 +101,33 @@
                 <tr>
                     <td>Amsterdam</td>
                     <td>41</td>
-                    <td>▲</td>
+                    <td><span class="trend trend-up">▲</span></td>
                 </tr>
                 <tr>
                     <td>Rotterdam</td>
                     <td>32</td>
-                    <td>▲▲</td>
+                    <td><span class="trend trend-upstrong">▲▲</span></td>
                 </tr>
                 <tr>
                     <td>Utrecht</td>
                     <td>18</td>
-                    <td>➝</td>
+                    <td><span class="trend trend-flat">➝</span></td>
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <!-- Legend -->
+    <div style="margin-top:20px; padding:16px; border:1px solid #333; border-radius:8px; background:#14161D;">
+        <h3 style="margin-top:0; color:#31C8D9;">Trend legenda</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; color:#bbb; line-height:1.6;">
+            <div><span class="trend trend-upstrong">▲▲</span> Sterke stijging (meer meldingen)</div>
+            <div><span class="trend trend-up">▲</span> Stijging (matige groei)</div>
+            <div><span class="trend trend-flat">➝</span> Stabiel (geen grote verandering)</div>
+        </div>
+        <div style="margin-top:10px; font-size:13px; color:#888;">
+            Let op: in productie worden trends berekend per tijdvenster (24u / 7d / 30d).
+        </div>
     </div>
 
     <!-- Explanation -->
