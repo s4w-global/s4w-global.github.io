@@ -185,7 +185,8 @@ function mountSafetyMap(){
     const modal = document.getElementById("modalBackdrop");
     if(!mapEl) return;
 
-    if(typeof window.L === "undefined"){
+    const okLeaf = await waitForLeaflet(4000);
+    if(!okLeaf || typeof window.L === "undefined"){
       if(stat) stat.textContent = "Map failed to load (Leaflet missing).";
       toast("Leaflet not loaded. Check your internet / CDN access.");
       return;
