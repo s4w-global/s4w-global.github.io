@@ -1,3 +1,4 @@
+const API_BASE = "https://api-s4w.wjf-tech.nl/api"; // Backend API host (GitHub Pages friendly)
 /* S4W MVP (client-side demo)
    - language redirect (/index.html)
    - safety-map heat "demo" using canvas (dummy points)
@@ -152,8 +153,8 @@
 const S4W_PUBLIC_CFG = { turnstile: { enabled:false, site_key:'', protect_reports:true, protect_panic:false } };
 
 const S4W_TOKEN_CACHE = { token: null, exp: 0 }; // set false to use localStorage only
-const S4W_API_REPORT_ENDPOINT = '/api/report.php';
-const S4W_API_REPORTS_ENDPOINT = '/api/reports.php';
+const S4W_API_REPORT_ENDPOINT = 'https://api-s4w.wjf-tech.nl/api/report.php';
+const S4W_API_REPORTS_ENDPOINT = 'https://api-s4w.wjf-tech.nl/api/reports.php';
 
 const REPORT_MASK_METERS = 50;   // precise reports
 const PANIC_MASK_METERS  = 300;  // privacy for panic
@@ -215,7 +216,7 @@ function mountSafetyMap(){
 async function getTokenCached(){
   const now = Date.now();
   if(S4W_TOKEN_CACHE.token && now < (S4W_TOKEN_CACHE.exp - 10000)) return S4W_TOKEN_CACHE.token;
-  const res = await fetch('/api/token.php');
+  const res = await fetch('https://api-s4w.wjf-tech.nl/api/token.php');
   if(!res.ok) throw new Error('token');
   const data = await res.json();
   const expMs = Date.parse(data.expires_at);
@@ -227,7 +228,7 @@ async function getTokenCached(){
 
 async function getPublicCfg(){
   try{
-    const r = await fetch('/api/public_config.php');
+    const r = await fetch('https://api-s4w.wjf-tech.nl/api/public_config.php');
     if(r.ok){
       const cfg = await r.json();
       if(cfg && cfg.turnstile) S4W_PUBLIC_CFG.turnstile = cfg.turnstile;
@@ -250,7 +251,7 @@ function loadTurnstileScript(){
 
 async function getMapStyle(){
   try{
-    const r = await fetch('/api/settings.php');
+    const r = await fetch('https://api-s4w.wjf-tech.nl/api/settings.php');
     if(!r.ok) return 'dark';
     const s = await r.json();
     return (s.map_style || 'dark');
