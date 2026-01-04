@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>S4W — Safety Map (Demo)</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <!-- Leaflet (CDNJS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Leaflet.heat (CDNJS) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 <body>
   <header class="header">
@@ -41,7 +48,7 @@
 
 <div class="grid-2">
   <div class="card map-wrap">
-    <canvas id="heatCanvas" class="map-canvas"></canvas>
+    <div id="map" class="leaflet-map"></div>
     <div class="map-overlay">
       <span class="badge"><span class="badge-dot"></span> Heatmap demo</span>
       <span id="reportStats" class="badge">0 meldingen</span>
@@ -79,11 +86,11 @@
 
     <div class="row">
       <div>
-        <label>X (0..1)</label>
+        <label>Latitude (auto)</label>
         <input id="inpX" class="input" placeholder="Klik op de map om automatisch te vullen" />
       </div>
       <div>
-        <label>Y (0..1)</label>
+        <label>Longitude (auto)</label>
         <input id="inpY" class="input" placeholder="Klik op de map om automatisch te vullen" />
       </div>
     </div>

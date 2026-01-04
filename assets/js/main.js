@@ -147,21 +147,245 @@
     return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   }
 
-  function mountSafetyMap(){
-    const canvas = document.getElementById("heatCanvas");
+
+  const S4W_API_ENABLED = true;
+const S4W_PUBLIC_CFG = { turnstile: { enabled:false, site_key:'', protect_reports:true, protect_panic:false } };
+
+const S4W_TOKEN_CACHE = { token: null, exp: 0 }; // set false to use localStorage only
+const S4W_API_REPORT_ENDPOINT = '/api/report.php';
+const S4W_API_REPORTS_ENDPOINT = '/api/reports.php';
+
+const REPORT_MASK_METERS = 50;   // precise reports
+const PANIC_MASK_METERS  = 300;  // privacy for panic
+
+
+function s4wGetApiKey(){
+  try { return sessionStorage.getItem('s4w_api_key') || localStorage.getItem('s4w_api_key') || ''; } catch(e){ return ''; }
+}
+function s4wSetApiKey(k){
+  try { sessionStorage.setItem('s4w_api_key', k); } catch(e){}
+  try { localStorage.setItem('s4w_api_key', k); } catch(e){}
+}
+function s4wEnsureApiKey(){
+  let k = s4wGetApiKey();
+  if(k) return k;
+  k = (window.prompt('Enter your S4W API key (e.g. S4W-RTM-...)') || '').trim();
+  if(k){ s4wSetApiKey(k); }
+  return k;
+}
+
+
+function mountSafetyMap(){
+    const mapEl = document.getElementById("map");
     const list = document.getElementById("reportList");
     const stat = document.getElementById("reportStats");
     const btnPanic = document.getElementById("btnPanic");
     const btnReport = document.getElementById("btnReport");
     const modal = document.getElementById("modalBackdrop");
+    if(!mapEl) return;
 
-    if(!canvas) return;
+    if(typeof window.L === "undefined"){
+      if(stat) stat.textContent = "Map failed to load (Leaflet missing).";
+      toast("Leaflet not loaded. Check your internet / CDN access.");
+      return;
+    }
 
-    let reports = ensureSeedReports();
-    const refresh = ()=>{
-      reports = readReports();
-      drawHeat(canvas, reports);
+    function maskWithinMeters(lat, lng, meters){
+      const r = meters * Math.sqrt(Math.random());
+      const theta = Math.random() * 2 * Math.PI;
+      const dLat = (r * Math.cos(theta)) / 111320;
+      const dLng = (r * Math.sin(theta)) / (111320 * Math.cos(lat * Math.PI / 180));
+      return { lat: lat + dLat, lng: lng + dLng };
+    }
+
+    const map = L.map(mapEl, { zoomControl:true, preferCanvas:true });
+    const style = await getMapStyle();
+  let tileUrl = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+  let attrib = '&copy; OpenStreetMap contributors &copy; CARTO';
+  if(style==='normal') tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+  if(style==='semi') tileUrl = "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png";
+  L.tileLayer(tileUrl, { maxZoom: 19, attribution: attrib }).addTo(map);
+
+    const markers = L.layerGroup().addTo(map);
+    const heat = (typeof L.heatLayer === "function") ? L.heatLayer([], { radius: 28, blur: 22, maxZoom: 18 }) : null;
+    if(heat) heat.addTo(map);
+
+    
+
+async function getTokenCached(){
+  const now = Date.now();
+  if(S4W_TOKEN_CACHE.token && now < (S4W_TOKEN_CACHE.exp - 10000)) return S4W_TOKEN_CACHE.token;
+  const res = await fetch('/api/token.php');
+  if(!res.ok) throw new Error('token');
+  const data = await res.json();
+  const expMs = Date.parse(data.expires_at);
+  S4W_TOKEN_CACHE.token = data.token;
+  S4W_TOKEN_CACHE.exp = isFinite(expMs) ? expMs : (now + 14*60*1000);
+  return data.token;
+}
+
+
+async function getPublicCfg(){
+  try{
+    const r = await fetch('/api/public_config.php');
+    if(r.ok){
+      const cfg = await r.json();
+      if(cfg && cfg.turnstile) S4W_PUBLIC_CFG.turnstile = cfg.turnstile;
+    }
+  }catch(e){}
+}
+
+
+function loadTurnstileScript(){
+  return new Promise((resolve) => {
+    if(window.turnstile) return resolve(true);
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    s.async = true; s.defer = true;
+    s.onload = () => resolve(true);
+    s.onerror = () => resolve(false);
+    document.head.appendChild(s);
+  });
+}
+
+async function getMapStyle(){
+  try{
+    const r = await fetch('/api/settings.php');
+    if(!r.ok) return 'dark';
+    const s = await r.json();
+    return (s.map_style || 'dark');
+  }catch(e){
+    return 'dark';
+  }
+}
+
+  // Turnstile token (if enabled for this action)
+  if(S4W_PUBLIC_CFG.turnstile && S4W_PUBLIC_CFG.turnstile.enabled){
+    const protect = (payload.type==='panic') ? S4W_PUBLIC_CFG.turnstile.protect_panic : S4W_PUBLIC_CFG.turnstile.protect_reports;
+    if(protect){
+      const t = window.__s4wTurnstileToken || '';
+      if(!t) throw new Error('turnstile_required');
+      payload.turnstile_token = t;
+    }
+  }
+
+
+  const res = await fetch(S4W_API_REPORT_ENDPOINT, {
+    method: 'POST',
+    headers: (function(){ const h={'Content-Type':'application/json'}; const k=s4wEnsureApiKey(); if(k) h['X-API-Key']=k; return h; })(),
+    body: JSON.stringify(payload)
+  });
+  if(!res.ok) throw new Error('api');
+  return await res.json().catch(()=>({status:'ok'}));
+}
+
+async function refreshFromApi(){
+  const token = await getTokenCached();
+    const res = await fetch(S4W_API_REPORTS_ENDPOINT + '?since=7d', { headers: { 'Authorization': 'Bearer ' + token } });
+  if(!res.ok) throw new Error('api');
+  const cells = await res.json();
+  // Build fake reports array for table + markers
+  const reports = [];
+  cells.forEach(c=>{
+    const n = c.count || 0;
+    for(let i=0;i<Math.min(n, 20);i++){
+      reports.push({
+        ts: Date.now(),
+        lat: c.lat,
+        lng: c.lng,
+        intensity: Math.min(1, 0.45 + (n/10)),
+        category: Object.keys(c.categories||{})[0] || 'report',
+        note: 'Aggregated cell'
+      });
+    }
+  });
+  // Reuse existing renderer by temporary injecting
+  markers.clearLayers();
+  const pts = [];
+  cells.forEach(c=>{
+    pts.push([c.lat, c.lng, Math.min(1, 0.35 + (c.count/10))]);
+    const mk = L.circleMarker([c.lat, c.lng], { radius: 4, weight: 0, fillOpacity: 0.9 });
+    mk.bindTooltip(`${escapeHtml('Area cell')}<br><span class="small muted">${c.count} reports (7d)</span>`, {direction:"top"});
+    mk.addTo(markers);
+  });
+  if(heat) heat.setLatLngs(pts);
+  if(stat) stat.textContent = `${cells.reduce((a,b)=>a+(b.count||0),0)} total reports (7d)`;
+  if(list){
+    list.innerHTML = cells.slice(0,30).map(c=>{
+      return `<tr><td class="small muted">—</td><td>${escapeHtml(c.geohash)}</td><td class="small muted">${c.count} reports (7d)</td></tr>`;
+    }).join('');
+  }
+}
+
+async function renderTurnstileInModal(actionType){
+  // Reset token each time modal opens
+  window.__s4wTurnstileToken = '';
+  const ts = S4W_PUBLIC_CFG.turnstile || {enabled:false};
+  if(!ts.enabled) return;
+
+  const protect = (actionType==='panic') ? ts.protect_panic : ts.protect_reports;
+  if(!protect) return;
+
+  const ok = await loadTurnstileScript();
+  if(!ok || !window.turnstile) return;
+
+  const el = document.getElementById('s4w-turnstile');
+  if(!el) return;
+  el.innerHTML = '';
+  try{
+    window.turnstile.render(el, {
+      sitekey: ts.site_key,
+      theme: 'dark',
+      callback: (token) => { window.__s4wTurnstileToken = token; },
+      'expired-callback': () => { window.__s4wTurnstileToken = ''; }
+    });
+  }catch(e){}
+}
+function ensureSeedGeoReports(){
+      const existing = readReports();
+      if(existing.length) return existing;
+      const base = { lat: 52.3702, lng: 4.8952 }; // Amsterdam
+      const now = Date.now();
+      const seed = [];
+      const cats = ["Harassment","Unsafe lighting","Stalking","Assault risk","Pickpocketing"];
+      for(let i=0;i<6;i++){
+        const p = maskWithinMeters(base.lat, base.lng, 1200);
+        seed.push({
+          id:"seed_" + i,
+          ts: now - (i*86400000),
+          lat: p.lat,
+          lng: p.lng,
+          intensity: 0.65 + (i%3)*0.08,
+          category: cats[i%cats.length],
+          note: "Demo report (client-side)",
+          privacy: { maskedWithinMeters: 1200 }
+        });
+      }
+      writeReports(seed);
+      return seed;
+    }
+
+    function refresh(){
+      const reports = readReports();
       if(stat) stat.textContent = `${reports.length} total reports (demo)`;
+      markers.clearLayers();
+      const pts = [];
+      reports.forEach(r=>{
+        // migrate old normalized x/y if present
+        if((typeof r.lat !== "number" || typeof r.lng !== "number") && typeof r.x === "number" && typeof r.y === "number"){
+          const c = map.getCenter();
+          r.lat = c.lat + (r.y - 0.5) * 0.02;
+          r.lng = c.lng + (r.x - 0.5) * 0.02;
+        }
+        if(typeof r.lat === "number" && typeof r.lng === "number"){
+          if(heat) pts.push([r.lat, r.lng, (r.intensity || 0.6)]);
+          const mk = L.circleMarker([r.lat, r.lng], { radius: 4, weight: 0, fillOpacity: 0.9 });
+          mk.bindTooltip(`${escapeHtml(r.category||"Unspecified")}<br><span class="small muted">${fmtDate(r.ts)}</span>`, {direction:"top"});
+          mk.addTo(markers);
+        }
+      });
+      if(heat) heat.setLatLngs(pts);
+
       if(list){
         const items = reports.slice().reverse().slice(0, 30);
         list.innerHTML = items.map(r=>{
@@ -174,22 +398,32 @@
           </tr>`;
         }).join("");
       }
-    };
+    }
 
-    // Click to set location (normalized) for report
-    canvas.addEventListener("click", (e)=>{
-      const rect = canvas.getBoundingClientRect();
-      const nx = (e.clientX - rect.left) / rect.width;
-      const ny = (e.clientY - rect.top) / rect.height;
+    function setInputs(lat, lng){
       const xInp = document.getElementById("inpX");
       const yInp = document.getElementById("inpY");
-      if(xInp && yInp){
-        xInp.value = nx.toFixed(4);
-        yInp.value = ny.toFixed(4);
-      }
+      if(xInp) xInp.value = Number(lat).toFixed(6);
+      if(yInp) yInp.value = Number(lng).toFixed(6);
+    }
+
+    map.on("click", (e)=>{
+      setInputs(e.latlng.lat, e.latlng.lng);
+      toast("Location selected. Choose a category and submit.");
     });
 
-    window.addEventListener("resize", ()=>refresh());
+    map.setView([52.3702, 4.8952], 13);
+
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(
+        (pos)=>{
+          map.setView([pos.coords.latitude, pos.coords.longitude], 16);
+          setInputs(pos.coords.latitude, pos.coords.longitude);
+        },
+        ()=>toast("GPS not available/allowed. Click map to select a point."),
+        { enableHighAccuracy:true, timeout:9000, maximumAge:60000 }
+      );
+    }
 
     if(btnPanic){
       btnPanic.addEventListener("click", ()=>{
@@ -199,43 +433,60 @@
 
     if(btnReport && modal){
       btnReport.addEventListener("click", ()=> openModal(modal));
-      modal.addEventListener("click", (e)=>{
-        if(e.target === modal) closeModal(modal);
-      });
+      modal.addEventListener("click", (e)=>{ if(e.target === modal) closeModal(modal); });
       const close = document.getElementById("modalClose");
       if(close) close.addEventListener("click", ()=>closeModal(modal));
+
       const submit = document.getElementById("modalSubmit");
       if(submit) submit.addEventListener("click", ()=>{
-        const x = parseFloat((document.getElementById("inpX")||{}).value || "");
-        const y = parseFloat((document.getElementById("inpY")||{}).value || "");
+        const lat = parseFloat((document.getElementById("inpX")||{}).value || "");
+        const lng = parseFloat((document.getElementById("inpY")||{}).value || "");
         const cat = (document.getElementById("inpCat")||{}).value || "Unspecified";
         const note = (document.getElementById("inpNote")||{}).value || "";
-        if(!(x>=0 && x<=1 && y>=0 && y<=1)){
-          toast("Pick a location on the map (or set X/Y between 0 and 1).");
+
+        if(!(isFinite(lat) && isFinite(lng) && Math.abs(lat)<=90 && Math.abs(lng)<=180)){
+          toast("Select a location on the map (or enable GPS).");
           return;
         }
+
+        const masked = maskWithinMeters(lat, lng, REPORT_MASK_METERS);
         const newItem = {
           id: "r_" + Math.random().toString(16).slice(2),
           ts: Date.now(),
-          x, y,
-          intensity: 0.65,
+          lat: masked.lat,
+          lng: masked.lng,
+          intensity: 0.78,
           category: cat,
-          note: note.slice(0, 200)
+          note: note.slice(0,200),
+          privacy: { maskedWithinMeters: REPORT_MASK_METERS }
         };
-        const all = readReports();
-        all.push(newItem);
-        writeReports(all);
+
         closeModal(modal);
-        (document.getElementById("inpNote")||{}).value = "";
+      // Send to backend (live MVP)
+      if(S4W_API_ENABLED){
+        submitReportToApi({lat: lat, lng: lng, category: cat, type: 'report'}).then(()=>{
+          refreshFromApi();
+          toast('Report added (server).');
+        }).catch(()=>{
+          toast('API error. Saved locally (fallback).');
+          const all = readReports(); all.push(newItem); writeReports(all); refresh();
+        });
+      } else {
+        const all = readReports(); all.push(newItem); writeReports(all); refresh();
+      }
+        const noteEl = document.getElementById("inpNote");
+        if(noteEl) noteEl.value = "";
         refresh();
-        toast("Report added (client-side demo).");
+        toast("Report added (masked ~300m).");
       });
     }
 
-    refresh();
+    ensureSeedGeoReports();
+    setTimeout(()=>{ map.invalidateSize(); if(S4W_API_ENABLED){ refreshFromApi().catch(()=>refresh()); } else { refresh(); } }, 150);
   }
 
   function openModal(backdrop){
+
     backdrop.style.display = "flex";
   }
   function closeModal(backdrop){

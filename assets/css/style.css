@@ -203,19 +203,47 @@ label{font-size:12px; color:var(--muted); display:block; margin:10px 0 6px}
 
 .modal-backdrop{
   position:fixed; inset:0;
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.78);
+  backdrop-filter: blur(4px);
   display:none; align-items:center; justify-content:center;
   padding:20px;
-  z-index:50;
+  z-index:5000;
 }
 .modal{
-  width:min(680px, 100%);
-  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  border:1px solid var(--border);
+  width:min(720px, 100%);
+  background:rgba(10,14,20,.92);
+  border:1px solid rgba(31,42,58,.95);
   border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.55);
+  padding:18px;
+  color: var(--text);
 }
 .modal h3{margin:0 0 8px}
 .modal .muted{margin:0 0 10px}
 .modal-actions{display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; margin-top:12px}
+
+/* Leaflet map container */
+.leaflet-map{width:100%;height:520px;min-height:420px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:rgba(255,255,255,.02);}
+@media (max-width: 720px){.leaflet-map{height:440px;min-height:360px;}}
+.leaflet-control-zoom a{background:rgba(11,15,20,.90) !important;color:var(--text) !important;border:1px solid var(--border) !important;}
+.leaflet-control-attribution{background:rgba(11,15,20,.65) !important;color:var(--muted) !important;border:1px solid rgba(31,42,58,.65) !important;border-radius:12px;padding:4px 8px !important;}
+
+/* Modal readability */
+.modal input, .modal select, .modal textarea{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(31,42,58,.85);
+}
+.modal .muted{color:rgba(220,230,255,.78)}
+
+
+/* Print/PDF export */
+@media print{
+  header, nav, .topbar, .btnrow, .nav, .langswitch, .no-print { display:none !important; }
+  body{ background:#fff !important; color:#000 !important; }
+  .card{ box-shadow:none !important; border:1px solid #ddd !important; }
+  a{ color:#000 !important; text-decoration:none !important; }
+  .badge{ border:1px solid #ccc !important; }
+}
+
+
+#s4w-turnstile{ padding:10px; border:1px solid rgba(255,255,255,.08); border-radius:12px; background:rgba(0,0,0,.25); }

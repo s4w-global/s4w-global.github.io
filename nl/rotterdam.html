@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gemeente Dashboard — Rotterdam • S4W</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand">S4W</div>
+      <div class="spacer"></div>
+      <a class="btn ghost" href="./dashboard.html">Terug naar dashboard</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Gemeente Dashboard — Rotterdam</h1>
+    <p class="muted">Dit dashboard is beveiligd met een gemeente-API-key en toont de 14 gebieden.</p>
+
+    <div class="card">
+      <div class="card-h">
+        <h2>Gebieden (laatste 7 dagen)</h2>
+        <div class="spacer"></div>
+        <button id="btnPdf" class="btn no-print">Export naar PDF</button>
+      </div>
+
+      <div class="grid" style="grid-template-columns: 1fr; gap:12px">
+        <div class="field no-print">
+          <label>API-key (Rotterdam)</label>
+          <input id="inpKey" type="password" value="S4W-RTM-2025-DEMO-KEY-9F3A1C" />
+          <div class="hint muted">MVP demo key. Rotate before production.</div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Gebied</th>
+              <th>Meldingen</th>
+              <th>Δ t.o.v. vorige 7d</th>
+              <th>Trend</th>
+            </tr>
+          </thead>
+          <tbody id="rtmRows"></tbody>
+        </table>
+      </div>
+
+      <div class="legend muted" style="margin-top:12px">
+        <b>Legenda:</b>
+        <span class="trend t-strong">▲▲</span> sterke stijging ·
+        <span class="trend t-up">▲</span> stijging ·
+        <span class="trend t-flat">➝</span> stabiel
+      </div>
+    </div>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+  (function(){
+    const rowsEl = document.getElementById('rtmRows');
+    const keyEl = document.getElementById('inpKey');
+    const btnPdf = document.getElementById('btnPdf');
+
+    function trendBadge(trend){
+      if(trend==='upup') return '<span class="badge trend t-strong">▲▲</span>';
+      if(trend==='up') return '<span class="badge trend t-up">▲</span>';
+      return '<span class="badge trend t-flat">➝</span>';
+    }
+
+    async function load() {
+      const key = keyEl.value.trim();
+      const res = await fetch('/api/rotterdam.php', {
+        headers: { 'X-API-Key': key }
+      });
+      if(!res.ok){
+        rowsEl.innerHTML = '<tr><td colspan="4" class="muted">Unauthorized / API not reachable</td></tr>';
+        return;
+      }
+      const data = await res.json();
+      rowsEl.innerHTML = data.areas.map(a => `
+        <tr>
+          <td><b>${a.area}</b></td>
+          <td>${a.last7}</td>
+          <td class="muted">${a.delta >=0 ? '+'+a.delta : a.delta}</td>
+          <td>${trendBadge(a.trend)}</td>
+        </tr>
+      `).join('');
+    }
+
+    keyEl.addEventListener('change', load);
+    load();
+
+    btnPdf.addEventListener('click', ()=> window.print());
+  })();
+  </script>
+</body>
+</html>
